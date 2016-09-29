@@ -17,7 +17,7 @@ class UpdateAbility extends Ability {
    * @param  {array|object|null} fields
    * @return {void}
    */
-  constructor (resource, fields = null) {
+  constructor (resource, fields) {
     super(resource, fields)
 
     this.type = Ability.UPDATE
