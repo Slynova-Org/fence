@@ -46,6 +46,8 @@ I'll let you open the [example file](https://github.com/RomainLanz/node-fence/bl
 
 The API is easy to use and very fluent.<br>
 
+> :point_right: In all of these exemples the varialbe `article` is an object that you can find [in the stubs directory of testing](https://github.com/RomainLanz/node-fence/blob/master/tests/stubs/article.js)
+
 ```javascript
 /**
  * This create a new policy allowing the admin roles
@@ -66,24 +68,10 @@ guard.disallow('admin').to.delete(article)
  * A policy can also map only some fields.
  */
 guard.allow('member').to.view(article).only(['title', 'content'])
-
-/**
- * This is not implemented at the moment.
- * If it's needed, you can set a dynamic condition.
- *
- * ownerCondition is here a function defined in the configuration.
- */
-guard.allow('member').to.update(member).conditions([ 'ownerCondition' ])
-
-/**
- * This is not implemented at the moment.
- * Of course, it's possible to define a condition only for some fields.
- */
-guard.allow('member').to.view(article).conditions({ 'created_at': 'ownerCondition' })
 ```
 
 After setting all of your policies in a bootstrap file you may want to create condition.<br>
-This can be done by using the `can` method of `Guard`.
+This can be done by using the `can` method of `Guard` with an object (in this example I'm using an object `user` that you can find [in the stubs directory of testing](https://github.com/RomainLanz/node-fence/blob/master/tests/stubs/user.js).
 
 ```javascript
 /**
@@ -108,6 +96,19 @@ Goals to release the first version (unordered).
  - [ ] Clean the code base
  - [ ] Add `except` for fields
  - [ ] Create dynamic conditions
+```javascript
+/**
+ * If it's needed, you can set a dynamic condition.
+ *
+ * ownerCondition is here a function defined in the configuration.
+ */
+guard.allow('member').to.update(member).conditions([ 'ownerCondition' ])
+
+/**
+ * Of course, it's possible to define a condition only for some fields.
+ */
+guard.allow('member').to.view(article).conditions({ 'created_at': 'ownerCondition' })
+```
  - [ ] Cleary document all methods
  - [ ] Test every possible use cases and get 100% code coverage
 
