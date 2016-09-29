@@ -1,7 +1,7 @@
 ![node-fence](https://cloud.githubusercontent.com/assets/2793951/18944300/f16230ca-8624-11e6-909a-46411104d7f3.png)
 
-# node-fence
-
+[![Build Status](https://img.shields.io/travis/RomainLanz/node-fence/master.svg?style=flat-square)](https://travis-ci.org/RomainLanz/node-fence)
+[![Coverage Status](https://img.shields.io/coveralls/RomainLanz/node-fence/master.svg?style=flat-square)](https://coveralls.io/github/RomainLanz/node-fence?branch=master)
 [![Version](https://img.shields.io/npm/v/node-fence.svg?style=flat-square)](https://www.npmjs.com/package/node-fence)
 [![Downloads](https://img.shields.io/npm/dt/node-fence.svg?style=flat-square)](https://www.npmjs.com/package/node-fence)
 [![License](https://img.shields.io/npm/l/node-fence.svg?style=flat-square)](https://opensource.org/licenses/MIT)
