@@ -97,14 +97,12 @@ class Bouncer {
       if (!roles.includes(policy.role)) continue
 
       if (policy.ability.type === this.type) {
-
         if (policy.allow) {
           if (conditionHasField) {
             if (policy.ability.fields.includes(this.field)) {
               allow = true
             } else deny = deny || !defaultAuthorization
           } else allow = true
-
         } else {
           if (conditionHasField) {
             if (policy.ability.fields.includes(this.field)) {
@@ -112,7 +110,6 @@ class Bouncer {
             } else allow = allow || defaultAuthorization
           } else deny = true
         }
-
       } // if type
     } // for end
 
