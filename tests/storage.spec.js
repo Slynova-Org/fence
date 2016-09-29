@@ -10,6 +10,7 @@ const chai = require('chai')
 const expect = chai.expect
 const Policy = require('../src/policy')
 const Storage = require('../src/storage').instance
+const StorageClass = require('../src/storage')
 const config = require('./stubs/config.js')
 const article = require('./stubs/article.js')
 
@@ -18,12 +19,28 @@ describe('Storage Specs', () => {
     Storage._reset()
   })
 
+  it('should not be able to be instancied', () => {
+    try {
+      const storage = new StorageClass()
+      expect(true).to.be.false
+    } catch (err) {
+      expect(err.message).to.equal('Cannot Construct Singleton')
+    }
+  })
+
   it('should be able to store policy', () => {
     new Policy(config).forRole('admin').allowing.to.create(article)
 
     let policies = Storage.pull()
     expect(policies).to.be.an.object
     expect(Object.keys(policies).length).to.equal(1)
+  })
+
+  it('should return null if there is no policy for a role', () => {
+    new Policy(config).forRole('admin').allowing.to.create(article)
+    let policies = Storage.pullForRole('member')
+
+    expect(policies).to.be.null
   })
 
   it('should be able to retrieve stored policy for a role', () => {
