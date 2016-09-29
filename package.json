@@ -23,10 +23,11 @@
   },
   "scripts": {
     "standard": "standard src/**/*.js",
-    "test": "istanbul cover _mocha --report lcovonly -- -R spec tests && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+    "test": "istanbul cover _mocha --report lcovonly -- -R spec tests && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "coveralls": "^2.11.14",
     "istanbul": "^0.4.3",
     "mocha": "^2.5.3",
     "standard": "^7.1.2"
