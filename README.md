@@ -1,4 +1,4 @@
-![Slynova](https://cloud.githubusercontent.com/assets/2793951/13279223/696b9020-dad6-11e5-91a9-eefaa627e079.png)
+![node-fence](https://cloud.githubusercontent.com/assets/2793951/18944300/f16230ca-8624-11e6-909a-46411104d7f3.png)
 
 # node-fence
 
@@ -68,6 +68,7 @@ guard.disallow('admin').to.delete(article)
 guard.allow('member').to.view(article).only(['title', 'content'])
 
 /**
+ * This is not implemented at the moment.
  * If it's needed, you can set a dynamic condition.
  *
  * ownerCondition is here a function defined in the configuration.
@@ -75,8 +76,8 @@ guard.allow('member').to.view(article).only(['title', 'content'])
 guard.allow('member').to.update(member).conditions([ 'ownerCondition' ])
 
 /**
- * Of course, it's possible to define a condition only for some fields.
  * This is not implemented at the moment.
+ * Of course, it's possible to define a condition only for some fields.
  */
 guard.allow('member').to.view(article).conditions({ 'created_at': 'ownerCondition' })
 ```
