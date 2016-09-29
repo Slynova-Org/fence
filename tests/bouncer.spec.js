@@ -20,6 +20,70 @@ describe('Bouncer Specs', () => {
     Storage._reset()
   })
 
+  it('should be able to read "create" rules', () => {
+    new Policy(config).forRole('admin').allowing.to.create(article)
+
+    let bouncer = new Bouncer(config).forUser(user)
+
+    expect(bouncer.can.create(article)).to.be.true
+  })
+
+  it('should be able to read "create" rules for specific fields', () => {
+    new Policy(config).forRole('admin').allowing.to.create(article).only('title')
+
+    let bouncer = new Bouncer(config).forUser(user)
+
+    expect(bouncer.can.create('title').of(article)).to.be.true
+  })
+
+  it('should be able to read "update" rules', () => {
+    new Policy(config).forRole('admin').allowing.to.update(article)
+
+    let bouncer = new Bouncer(config).forUser(user)
+
+    expect(bouncer.can.update(article)).to.be.true
+  })
+
+  it('should be able to read "update" rules for specific fields', () => {
+    new Policy(config).forRole('admin').allowing.to.update(article).only('title')
+
+    let bouncer = new Bouncer(config).forUser(user)
+
+    expect(bouncer.can.update('title').of(article)).to.be.true
+  })
+
+  it('should be able to read "delete" rules', () => {
+    new Policy(config).forRole('admin').allowing.to.delete(article)
+
+    let bouncer = new Bouncer(config).forUser(user)
+
+    expect(bouncer.can.delete(article)).to.be.true
+  })
+
+  it('should be able to read "delete" rules for specific fields', () => {
+    new Policy(config).forRole('admin').allowing.to.delete(article).only('title')
+
+    let bouncer = new Bouncer(config).forUser(user)
+
+    expect(bouncer.can.delete('title').of(article)).to.be.true
+  })
+
+  it('should be able to read "view" rules', () => {
+    new Policy(config).forRole('admin').allowing.to.view(article)
+
+    let bouncer = new Bouncer(config).forUser(user)
+
+    expect(bouncer.can.view(article)).to.be.true
+  })
+
+  it('should be able to read "view" rules for specific fields', () => {
+    new Policy(config).forRole('admin').allowing.to.view(article).only('title')
+
+    let bouncer = new Bouncer(config).forUser(user)
+
+    expect(bouncer.can.view('title').of(article)).to.be.true
+  })
+
   it('should return true by default (as specified in the configuration)', () => {
     config.default = 'allow'
 
