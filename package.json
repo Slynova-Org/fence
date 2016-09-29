@@ -33,6 +33,14 @@
     "standard": "^8.0.0"
   },
   "standard": {
-    "globals": ["describe", "it", "beforeEach", "before"]
+    "globals": [
+      "describe",
+      "it",
+      "beforeEach",
+      "before"
+    ]
+  },
+  "dependencies": {
+    "lodash": "^4.16.2"
   }
 }

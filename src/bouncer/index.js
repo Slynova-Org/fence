@@ -6,6 +6,7 @@
  * @copyright Slynova - Romain Lanz <romain.lanz@slynova.ch>
  */
 
+const _ = require('lodash')
 const Ability = require('../abilities/ability')
 const Storage = require('../storage').instance
 
@@ -93,18 +94,18 @@ class Bouncer {
     if (policies === null) { return defaultAuthorization }
 
     for (let policy of policies) {
-      if (!roles.includes(policy.role)) continue
+      if (!_.includes(roles, policy.role)) continue
 
       if (policy.ability.type === this.type) {
         if (policy.allow) {
           if (conditionHasField) {
-            if (policy.ability.fields.includes(this.field)) {
+            if (_.includes(policy.ability.fields, this.field)) {
               allow = true
             } else deny = deny || !defaultAuthorization
           } else allow = true
         } else {
           if (conditionHasField) {
-            if (policy.ability.fields.includes(this.field)) {
+            if (_.includes(policy.ability.fields, this.field)) {
               deny = true
             } else allow = allow || defaultAuthorization
           } else deny = true
