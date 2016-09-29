@@ -46,7 +46,7 @@ I'll let you open the [example file](https://github.com/RomainLanz/node-fence/bl
 
 The API is easy to use and very fluent.<br>
 
-> :point_right: In all of these exemples the varialbe `article` is an object that you can find [in the stubs directory of testing](https://github.com/RomainLanz/node-fence/blob/master/tests/stubs/article.js)
+> :point_right: In all of these exemples the variable `article` is an object that you can find [in the stubs directory of testing](https://github.com/RomainLanz/node-fence/blob/master/tests/stubs/article.js).
 
 ```javascript
 /**
@@ -71,7 +71,9 @@ guard.allow('member').to.view(article).only(['title', 'content'])
 ```
 
 After setting all of your policies in a bootstrap file you may want to create condition.<br>
-This can be done by using the `can` method of `Guard` with an object (in this example I'm using an object `user` that you can find [in the stubs directory of testing](https://github.com/RomainLanz/node-fence/blob/master/tests/stubs/user.js).
+This can be done by using the `can` method of `Guard` with an object.
+
+> :point_right: In all of these exemples the variable `user` is an object that you can find [in the stubs directory of testing](https://github.com/RomainLanz/node-fence/blob/master/tests/stubs/user.js).
 
 ```javascript
 /**
