@@ -21,7 +21,6 @@ class Bouncer {
     this.field = null
     this.default = config.default
     this.precedence = config.precedence
-    this._retrieveUUID = config.retrieveUUID
     this._retrieveClassName = config.retrieveClassName
     this._retrieveUserRoles = config.retrieveUserRoles
   }

@@ -36,20 +36,15 @@ module.exports = {
 
   /*
    |--------------------------------------------------------------------------
-   | Retrieve UUID
-   |--------------------------------------------------------------------------
-   |
-   | Defined how we retrieve the UUID of an object.
-   |
-   */
-  'retrieveUUID': (object) => { return object.id },
-
-  /*
-   |--------------------------------------------------------------------------
    | Retrieve Class Name
    |--------------------------------------------------------------------------
    |
    | Defined how we retrieve the name of an object.
+   |
+   | When we store a policy that you defined for a resource we need to store it
+   | with a key. The class name of your resource is used to be the key.
+   | So when you call `guard.can(user).view(article)` the variable
+   | `article` will be send to `retrieveClassName` function.
    |
    */
   'retrieveClassName': (object) => { return object._className },
@@ -61,7 +56,10 @@ module.exports = {
    |
    | Defined how we retrieve user's roles.
    |
-   | Note : It shoulds return an array of strings.
+   | When we store a policy that you defined for a resource we need to store it
+   | for a role. So when you call `guard.can(user).view(article)` the variable
+   | `user` will be send to `retrieveUserRoles` function and expect to
+   | have an array of strings in return.
    |
    */
   'retrieveUserRoles': (user) => { return user.roles_id },
@@ -76,7 +74,7 @@ module.exports = {
    */
   'conditions': {
 
-    // We assume that 1 is the ID of the current logged in user
+    // We assume that 1 is the ID of the current logged in user as an example.
     'ownerCondition': (object) => { return object.owner_id === 1 }
 
   }

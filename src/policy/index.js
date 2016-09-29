@@ -17,7 +17,6 @@ class Policy {
    * @return {void}
    */
   constructor (config) {
-    this._retrieveUUID = config.retrieveUUID
     this._retrieveClassName = config.retrieveClassName
   }
 

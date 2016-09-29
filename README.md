@@ -38,9 +38,8 @@ let guard = new Guard(config)
 
 ### Configuration
 
-The configuration should be in JSON format.<br>
 Instead of explaining you all of the key in the configuration.<br>
-I'll let you open the [example file](https://github.com/RomainLanz/node-fence/blob/master/tests/stubs/config.js) which is used to test this package.
+I'll let you open the [example file](https://github.com/RomainLanz/node-fence/blob/master/tests/stubs/config.js) which is used to test this package and read comments.
 
 ### API
 
