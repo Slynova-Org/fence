@@ -1,7 +1,7 @@
 ![node-fence](https://cloud.githubusercontent.com/assets/2793951/18944300/f16230ca-8624-11e6-909a-46411104d7f3.png)
 
-[![Build Status](https://img.shields.io/travis/RomainLanz/node-fence/master.svg?style=flat-square)](https://travis-ci.org/RomainLanz/node-fence)
-[![Coverage Status](https://img.shields.io/coveralls/RomainLanz/node-fence/master.svg?style=flat-square)](https://coveralls.io/github/RomainLanz/node-fence?branch=master)
+[![Build Status](https://img.shields.io/travis/Slynova-Org/node-fence/master.svg?style=flat-square)](https://travis-ci.org/Slynova-Org/node-fence)
+[![Coverage Status](https://img.shields.io/coveralls/Slynova-Org/node-fence/master.svg?style=flat-square)](https://coveralls.io/github/Slynova-Org/node-fence?branch=master)
 [![Version](https://img.shields.io/npm/v/node-fence.svg?style=flat-square)](https://www.npmjs.com/package/node-fence)
 [![Downloads](https://img.shields.io/npm/dt/node-fence.svg?style=flat-square)](https://www.npmjs.com/package/node-fence)
 [![License](https://img.shields.io/npm/l/node-fence.svg?style=flat-square)](https://opensource.org/licenses/MIT)
@@ -39,13 +39,13 @@ let guard = new Guard(config)
 ### Configuration
 
 Instead of explaining you all of the key in the configuration.<br>
-I'll let you open the [example file](https://github.com/RomainLanz/node-fence/blob/master/tests/stubs/config.js) which is used to test this package and read comments.
+I'll let you open the [example file](https://github.com/Slynova-Org/node-fence/blob/master/tests/stubs/config.js) which is used to test this package and read comments.
 
 ### API
 
 The API is easy to use and very fluent.<br>
 
-> :point_right: In all of these exemples the variable `article` is an object that you can find [in the stubs directory of testing](https://github.com/RomainLanz/node-fence/blob/master/tests/stubs/article.js).
+> :point_right: In all of these exemples the variable `article` is an object that you can find [in the stubs directory of testing](https://github.com/Slynova-Org/node-fence/blob/master/tests/stubs/article.js).
 
 ```javascript
 /**
@@ -72,7 +72,7 @@ guard.allow('member').to.view(article).only(['title', 'content'])
 After setting all of your policies in a bootstrap file you may want to create condition.<br>
 This can be done by using the `can` method of `Guard` with an object.
 
-> :point_right: In all of these exemples the variable `user` is an object that you can find [in the stubs directory of testing](https://github.com/RomainLanz/node-fence/blob/master/tests/stubs/user.js).
+> :point_right: In all of these exemples the variable `user` is an object that you can find [in the stubs directory of testing](https://github.com/Slynova-Org/node-fence/blob/master/tests/stubs/user.js).
 
 ```javascript
 /**
