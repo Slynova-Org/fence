@@ -11,6 +11,7 @@
 </p>
 
 `node-fence` is a framework-agnostic package which provides powerful ACL abilities to [Node.js](https://nodejs.org).<br>
+<<<<<<< HEAD
 It lets you easily manage ACL with a fluent API easy to learn.
 
 > :pray: This package is under active development, some breaking changes may occur before the first release.
@@ -89,10 +90,44 @@ guard.can(user).view('title').of(article)
 // ...
 ```
 
+=======
+It lets you easily manage ACL with a fluent API easy to learn and to work with. :rocket:
+
+> :pray: This package is under active development, some breaking changes may occur before the first release.
+
+<br>
+<hr>
+<br>
+
+## Getting Started
+
+This package is available in the Node Package Repository and can be easily installed with [npm](https://docs.npmjs.com/getting-started/what-is-npm) or [yarn](https://yarnpkg.com).
+
+```bash
+$ npm i --save node-fence
+# or
+$ yarn add node-fence
+```
+
+When you require the package in your file, it will give you access to the `Guard` and `Gate` class.<br>
+
+```javascript
+const Guard = require('node-fence').Guard
+const Gate = require('node-fence').Gate
+
+const guard = new Guard()
+const gate = new Gate()
+```
+
+:point_right: [Read the Official Documentation](https://github.com/Slynova-Org/node-fence/wiki)
+
+<br>
+>>>>>>> 1.0.0-alpha
 ## Contribution Guidelines
 
 Any pull requests or discussions are welcome.<br>
 Note that every pull request providing new feature or correcting a bug should be created with appropriate unit tests.
+<<<<<<< HEAD
 
 ## Roadmap
 
@@ -120,3 +155,5 @@ guard.allow('member').to.view(article).conditions({ 'created_at': 'ownerConditio
 ## Change Logs
 
 Nothing will be wrote here before the release of the first version.
+=======
+>>>>>>> 1.0.0-alpha

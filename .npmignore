@@ -1,3 +1,10 @@
+<<<<<<< HEAD
 /tests
 /.editorconfig
 /.travis.yml
+=======
+tests
+.editorconfig
+.gitignore
+.travis.yml
+>>>>>>> 1.0.0-alpha

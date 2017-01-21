@@ -1,12 +1,21 @@
 {
   "name": "node-fence",
+<<<<<<< HEAD
   "version": "0.1.3",
+=======
+  "version": "1.0.0-alpha",
+>>>>>>> 1.0.0-alpha
   "description": "Flexible and Fluent way to manage ACL in Node.js.",
   "keywords": [
     "acl",
     "security",
+<<<<<<< HEAD
     "guard",
     "bouncer",
+=======
+    "ability",
+    "policy",
+>>>>>>> 1.0.0-alpha
     "fence",
     "fluent",
     "flexible"
@@ -14,6 +23,12 @@
   "author": "Romain Lanz <romain.lanz@slynova.ch>",
   "license": "MIT",
   "main": "src/index.js",
+<<<<<<< HEAD
+=======
+  "scripts": {
+    "test": "node tests/test.js"
+  },
+>>>>>>> 1.0.0-alpha
   "repository": {
     "type": "git",
     "url": "https://github.com/Slynova-Org/node-fence"
@@ -21,6 +36,7 @@
   "bugs": {
     "url": "https://github.com/Slynova-Org/node-fence/issues"
   },
+<<<<<<< HEAD
   "scripts": {
     "standard": "standard src/**/*.js",
     "test": "istanbul cover _mocha --report lcovonly -- -R spec tests && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
@@ -42,5 +58,10 @@
   },
   "dependencies": {
     "lodash": "^4.16.4"
+=======
+  "devDependencies": {
+    "japa": "^1.0.0",
+    "require-all": "^2.1.0"
+>>>>>>> 1.0.0-alpha
   }
 }

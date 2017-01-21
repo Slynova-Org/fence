@@ -6,6 +6,7 @@
  * @copyright Slynova - Romain Lanz <romain.lanz@slynova.ch>
  */
 
+<<<<<<< HEAD
 const Policy = require('./policy')
 const Bouncer = require('./bouncer')
 
@@ -48,3 +49,11 @@ class Guard {
 }
 
 module.exports = Guard
+=======
+const Gate = require('./Gate')
+const Guard = require('./Guard')
+
+module.exports = {
+  Guard, Gate
+}
+>>>>>>> 1.0.0-alpha
