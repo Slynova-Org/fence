@@ -29,12 +29,14 @@ $ npm i --save node-fence
 $ yarn add node-fence
 ```
 
-When you require the package in your file, it will give you access to the `Guard` class.<br>
-This class is a facade for the package and should be instantiated with your configuration.
+When you require the package in your file, it will give you access to the `Guard` and `Gate` class.<br>
 
 ```javascript
 const Guard = require('node-fence').Guard
-const guard = new Guard(config)
+const Gate = require('node-fence').Gate
+
+const guard = new Guard()
+const gate = new Gate()
 ```
 
 :point_right: [Read the Official Documentation](https://github.com/Slynova-Org/node-fence/wiki)
