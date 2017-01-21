@@ -17,12 +17,12 @@ class Gate {
    * Defines a new Gate.
    *
    * @method define
-   * @param  {ability} name
+   * @param  {string} name
    * @param  {function|string} callback
    * @return {this}
    */
-  define (ability, callback) {
-    Storage.storeGate(ability, callback)
+  define (name, callback) {
+    Storage.storeGate(name, callback)
 
     return this
   }

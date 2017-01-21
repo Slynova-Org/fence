@@ -1,8 +1,2 @@
-<<<<<<< HEAD
-node_modules/
-coverage/
-
-=======
 node_modules
->>>>>>> 1.0.0-alpha
 npm-debug.log
