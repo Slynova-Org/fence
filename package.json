@@ -16,7 +16,7 @@
   "main": "src/index.js",
   "scripts": {
     "test": "node tests/test.js",
-    "test:coverage": "./node_modules/.bin/istanbul cover -x tests/test.js tests/test.js"
+    "test:coverage": "./node_modules/.bin/istanbul cover -x tests/test.js tests/test.js && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
     "url": "https://github.com/Slynova-Org/node-fence/issues"
   },
   "devDependencies": {
+    "coveralls": "^2.11.15",
     "istanbul": "^0.4.5",
     "japa": "^1.0.0",
     "require-all": "^2.1.0"
