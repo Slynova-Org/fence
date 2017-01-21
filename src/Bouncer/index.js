@@ -106,8 +106,6 @@ class Bouncer {
     } else if (typeof resource === 'object' && resource.constructor.name === 'Object') {
       return resource._className
     }
-
-    return resource
   }
 
 }

@@ -1,4 +1,5 @@
 const test = require('japa')
+const user = require('../stubs/user.json')
 const Storage = require('../../src/Storage')
 
 test.group('Storage', group => {
@@ -59,5 +60,19 @@ test.group('Storage', group => {
 
     assert.equal(Object.keys(storage.$gates).length, 0)
     assert.isUndefined(storage.$gates['test-gate'])
+  })
+
+  test('it should be able to store the default user', assert => {
+    let storage = Storage.instance
+    storage.storeUser(user)
+
+    assert.equal(storage.$defaultUser, user)
+  })
+
+  test('it should be able to retrieve the default user', assert => {
+    let storage = Storage.instance
+    storage.storeUser(user)
+
+    assert.equal(storage.retrieveUser(), user)
   })
 })

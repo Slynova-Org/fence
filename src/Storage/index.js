@@ -69,6 +69,17 @@ class Storage {
   }
 
   /**
+   * Store the default user.
+   *
+   * @method storeUser
+   * @param  {object} user
+   * @return {void}
+   */
+  storeUser (user) {
+    this.$defaultUser = user
+  }
+
+  /**
    * Retrieves a gate.
    *
    * @method retrieveGate
@@ -88,6 +99,16 @@ class Storage {
    */
   retrievePolicy (resource) {
     return this.$policies[resource]
+  }
+
+  /**
+   * Retrieves the default user.
+   *
+   * @method retrieveUser
+   * @return {object}
+   */
+  retrieveUser () {
+    return this.$defaultUser
   }
 
   /**
