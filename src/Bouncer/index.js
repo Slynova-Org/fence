@@ -6,7 +6,9 @@
  * @copyright Slynova - Romain Lanz <romain.lanz@slynova.ch>
  */
 
+const Helpers = require('../Helpers')
 const Storage = require('../Storage').instance
+const InvalidUser = require('../Exceptions').InvalidUser
 
  /**
   * @class Bouncer
@@ -21,6 +23,12 @@ class Bouncer {
    * @return {void}
    */
   constructor (user) {
+    user = user || Storage.retrieveUser()
+
+    if (!user) {
+      throw new InvalidUser('You need to specify a user for the Bouncer.')
+    }
+
     this.$user = user
   }
 
@@ -58,7 +66,7 @@ class Bouncer {
    * @return {boolean}
    */
   create (resource) {
-    const resourceName = this.$formatResourceName(resource)
+    const resourceName = Helpers.formatResourceName(resource)
     const policy = Storage.retrievePolicy(resourceName)
 
     return policy.create(this.$user)
@@ -72,7 +80,7 @@ class Bouncer {
    * @return {boolean}
    */
   update (resource) {
-    const resourceName = this.$formatResourceName(resource)
+    const resourceName = Helpers.formatResourceName(resource)
     const policy = Storage.retrievePolicy(resourceName)
 
     return policy.update(this.$user, resource)
@@ -86,26 +94,10 @@ class Bouncer {
    * @return {boolean}
    */
   delete (resource) {
-    const resourceName = this.$formatResourceName(resource)
+    const resourceName = Helpers.formatResourceName(resource)
     const policy = Storage.retrievePolicy(resourceName)
 
-    return policy.update(this.$user, resource)
-  }
-
-  /**
-   * @private
-   * @method formatResourceName
-   * @param  {function|object} resource
-   * @return {string}
-   */
-  $formatResourceName (resource) {
-    if (typeof resource === 'function') {
-      return resource.name
-    } else if (typeof resource === 'object' && resource.constructor.name !== 'Object') {
-      return resource.constructor.name
-    } else if (typeof resource === 'object' && resource.constructor.name === 'Object') {
-      return resource._className
-    }
+    return policy.delete(this.$user, resource)
   }
 
 }

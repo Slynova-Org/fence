@@ -121,6 +121,7 @@ class Storage {
   $reset () {
     this.$gates = {}
     this.$policies = {}
+    this.$defaultUser = null
   }
 
 }

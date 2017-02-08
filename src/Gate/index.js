@@ -6,6 +6,7 @@
  * @copyright Slynova - Romain Lanz <romain.lanz@slynova.ch>
  */
 
+const Helpers = require('../Helpers')
 const Storage = require('../Storage').instance
 
  /**
@@ -36,16 +37,9 @@ class Gate {
    * @return {this}
    */
   policy (resource, policy) {
-    if (typeof resource === 'function') {
-      resource = resource.name
-    } else if (typeof resource === 'object' && resource.constructor.name !== 'Object') {
-      resource = resource.constructor.name
-    } else if (typeof resource === 'object' && resource.constructor.name === 'Object') {
-      resource = resource._className
-    }
+    const resourceName = Helpers.formatResourceName(resource)
 
-
-    Storage.storePolicy(resource, policy)
+    Storage.storePolicy(resourceName, policy)
 
     return this
   }

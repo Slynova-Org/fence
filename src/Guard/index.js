@@ -6,6 +6,7 @@
  * @copyright Slynova - Romain Lanz <romain.lanz@slynova.ch>
  */
 
+const Helpers = require('../Helpers')
 const Bouncer = require('../Bouncer')
 const Storage = require('../Storage').instance
 
@@ -40,28 +41,46 @@ class Guard {
    * Check the bouncer if the gate allows the user.
    *
    * @method allows
-   * @param  {string} gate
+   * @param  {string} ability
    * @param  {object|string} resource
    * @return {boolean}
    */
-  allows (gate, resource) {
-    const bouncer = new Bouncer(Storage.retrieveUser())
+  allows (ability, resource) {
+    try {
+      if (this.$correspondsToPolicy(resource)) {
+        return (new Bouncer())[ability](resource)
+      }
 
-    return bouncer.goThroughGate(gate).for(resource)
+      return (new Bouncer()).goThroughGate(ability).for(resource)
+    } catch (e) {
+      return false
+    }
   }
 
   /**
    * Check the bouncer if the gate denies the user.
    *
    * @method denies
-   * @param  {string} gate
+   * @param  {string} ability
    * @param  {object|string} resource
    * @return {boolean}
    */
-  denies (gate, resource) {
-    const bouncer = new Bouncer(Storage.retrieveUser())
+  denies (ability, resource) {
+    try {
+      return !(new Bouncer()).goThroughGate(ability).for(resource)
+    } catch (e) {
+      return true
+    }
+  }
 
-    return ! bouncer.goThroughGate(gate).for(resource)
+  $correspondsToPolicy (resource) {
+    const resourceName = Helpers.formatResourceName(resource)
+
+    if (Storage.retrievePolicy(resourceName)) {
+      return true
+    }
+
+    return false
   }
 
 }

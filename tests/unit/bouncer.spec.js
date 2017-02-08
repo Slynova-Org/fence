@@ -3,13 +3,31 @@ const Post = require('../stubs/Post')
 const user = require('../stubs/user.json')
 const post = require('../stubs/post.json')
 const Gate = new (require('../../src/Gate'))()
+const Guard = new (require('../../src/Guard'))()
 const PostPolicy = require('../stubs/PostPolicy')
+const BouncerClass = require('../../src/Bouncer')
 const Bouncer = new (require('../../src/Bouncer'))(user)
 const Storage = require('../../src/Storage').instance
 
 test.group('Bouncer', group => {
   group.beforeEach(() => {
     Storage.$reset()
+  })
+
+  test('it should be instantiable without providing a user and fallback to the default one', assert => {
+    Guard.setDefaultUser(user)
+    const bounce = new BouncerClass()
+
+    assert.equal(bounce.$user, user)
+  })
+
+  test('it should throw an exception when instantiated without user and fallback', assert => {
+    try {
+      const bounce = new BouncerClass()
+      assert.isTrue(false)
+    } catch (e) {
+      assert.equal(e.message, 'You need to specify a user for the Bouncer.')
+    }
   })
 
   test('goThroughGate should be chainable', assert => {
@@ -80,12 +98,12 @@ test.group('Bouncer', group => {
   test('it should test delete method of correct Policy for ES2015 instantiated class', assert => {
     Gate.policy(Post, new PostPolicy())
 
-    assert.isTrue(Bouncer.delete(new Post()))
+    assert.isFalse(Bouncer.delete(new Post()))
   })
 
   test('it should test delete method of correct Policy for json object', assert => {
     Gate.policy(Post, new PostPolicy())
 
-    assert.isTrue(Bouncer.delete(post))
+    assert.isFalse(Bouncer.delete(post))
   })
 })

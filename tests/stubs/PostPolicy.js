@@ -11,7 +11,7 @@ class PostPolicy {
   }
 
   delete (user, post) {
-      return user.id === post.author_id
+    return false
   }
 
 }
