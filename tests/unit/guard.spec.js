@@ -1,5 +1,5 @@
 const test = require('japa')
-const Post = require('../stubs/post')
+const PostClass = require('../stubs/Post')
 const user = require('../stubs/user.json')
 const post = require('../stubs/post.json')
 const Gate = new (require('../../src/Gate'))()
@@ -25,12 +25,12 @@ test.group('Guard', group => {
   })
 
   test('it should be able to execute policy', assert => {
-    Gate.policy(Post, new PostPolicy())
+    Gate.policy(PostClass, new PostPolicy())
     Guard.setDefaultUser(user)
 
-    assert.isTrue(Guard.allows('update', (new Post())))
-    assert.isTrue(Guard.allows('create', (new Post())))
-    assert.isFalse(Guard.allows('delete', (new Post())))
+    assert.isTrue(Guard.allows('update', (new PostClass())))
+    assert.isTrue(Guard.allows('create', (new PostClass())))
+    assert.isFalse(Guard.allows('delete', (new PostClass())))
   })
 
   test('it should provide short syntax for allows', assert => {

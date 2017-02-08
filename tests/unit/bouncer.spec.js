@@ -1,5 +1,5 @@
 const test = require('japa')
-const Post = require('../stubs/Post')
+const PostClass = require('../stubs/Post')
 const user = require('../stubs/user.json')
 const post = require('../stubs/post.json')
 const Gate = new (require('../../src/Gate'))()
@@ -66,43 +66,43 @@ test.group('Bouncer', group => {
   })
 
   test('it should test create method of correct Policy for ES2015 class', assert => {
-    Gate.policy(Post, new PostPolicy())
+    Gate.policy(PostClass, new PostPolicy())
 
-    assert.isTrue(Bouncer.create(Post))
+    assert.isTrue(Bouncer.create(PostClass))
   })
 
   test('it should test create method of correct Policy for ES2015 instantiated class', assert => {
-    Gate.policy(Post, new PostPolicy())
+    Gate.policy(PostClass, new PostPolicy())
 
-    assert.isTrue(Bouncer.create(new Post()))
+    assert.isTrue(Bouncer.create(new PostClass()))
   })
 
   test('it should test create method of correct Policy for json object', assert => {
-    Gate.policy(Post, new PostPolicy())
+    Gate.policy(post, new PostPolicy())
 
     assert.isTrue(Bouncer.create(post))
   })
 
   test('it should test update method of correct Policy for ES2015 instantiated class', assert => {
-    Gate.policy(Post, new PostPolicy())
+    Gate.policy(PostClass, new PostPolicy())
 
-    assert.isTrue(Bouncer.update(new Post()))
+    assert.isTrue(Bouncer.update(new PostClass()))
   })
 
   test('it should test update method of correct Policy for json object', assert => {
-    Gate.policy(Post, new PostPolicy())
+    Gate.policy(post, new PostPolicy())
 
     assert.isTrue(Bouncer.update(post))
   })
 
   test('it should test delete method of correct Policy for ES2015 instantiated class', assert => {
-    Gate.policy(Post, new PostPolicy())
+    Gate.policy(PostClass, new PostPolicy())
 
-    assert.isFalse(Bouncer.delete(new Post()))
+    assert.isFalse(Bouncer.delete(new PostClass()))
   })
 
   test('it should test delete method of correct Policy for json object', assert => {
-    Gate.policy(Post, new PostPolicy())
+    Gate.policy(post, new PostPolicy())
 
     assert.isFalse(Bouncer.delete(post))
   })
