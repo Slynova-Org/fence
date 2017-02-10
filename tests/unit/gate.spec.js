@@ -2,24 +2,12 @@ const test = require('japa')
 const Post = require('../stubs/Post')
 const post = require('../stubs/post.json')
 const PostPolicy = require('../stubs/PostPolicy')
-const Gate = new (require('../../src/Gate'))()
+const Gate = require('../../src/Gate')
 const Storage = require('../../src/Storage').instance
 
 test.group('Gate', group => {
   group.beforeEach(() => {
     Storage.$reset()
-  })
-
-  test('define should be chainable', assert => {
-    const gate = Gate.define('test-gate', () => {})
-
-    assert.equal(gate, Gate)
-  })
-
-  test('policy should be chainable', assert => {
-    const gate = Gate.policy('test-gate', () => {})
-
-    assert.equal(gate, Gate)
   })
 
   test('it should be_able to define gate', assert => {

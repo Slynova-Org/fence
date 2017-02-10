@@ -22,10 +22,8 @@ class Gate {
    * @param  {function|string} callback
    * @return {this}
    */
-  define (name, callback) {
+  static define (name, callback) {
     Storage.storeGate(name, callback)
-
-    return this
   }
 
   /**
@@ -36,12 +34,10 @@ class Gate {
    * @param  {object} policy
    * @return {this}
    */
-  policy (resource, policy) {
+  static policy (resource, policy) {
     const resourceName = Helpers.formatResourceName(resource)
 
     Storage.storePolicy(resourceName, policy)
-
-    return this
   }
 
 }

@@ -34,9 +34,6 @@ When you require the package in your file, it will give you access to the `Guard
 ```javascript
 const Guard = require('node-fence').Guard
 const Gate = require('node-fence').Gate
-
-const guard = new Guard()
-const gate = new Gate()
 ```
 
 :point_right: [Read the Official Documentation](https://github.com/Slynova-Org/node-fence/wiki)
