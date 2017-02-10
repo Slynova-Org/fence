@@ -47,6 +47,13 @@ test.group('Guard', group => {
     assert.isFalse(Guard.denies('post.update', post))
   })
 
+  test('it should allow to not use resource', assert => {
+    Guard.setDefaultUser(user)
+    Gate.define('show-hello-world', user => false)
+
+    assert.isFalse(Guard.allows('show-hello-world'))
+  })
+
   test('it should denied with short syntax by default when not auth for allows', assert => {
     Gate.define('post.update', (user, resource) => user.id === resource.author_id)
 
