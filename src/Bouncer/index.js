@@ -55,7 +55,7 @@ class Bouncer {
    * @return {this}
    */
   pass (gate) {
-    this.goThroughGate(gate)
+    return this.goThroughGate(gate)
   }
 
   /**
