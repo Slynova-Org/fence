@@ -68,42 +68,42 @@ test.group('Bouncer', group => {
   test('it should test create method of correct Policy for ES2015 class', assert => {
     Gate.policy(PostClass, new PostPolicy())
 
-    assert.isTrue(Bouncer.create(PostClass))
+    assert.isTrue(Bouncer.callPolicy('create', PostClass))
   })
 
   test('it should test create method of correct Policy for ES2015 instantiated class', assert => {
     Gate.policy(PostClass, new PostPolicy())
 
-    assert.isTrue(Bouncer.create(new PostClass()))
+    assert.isTrue(Bouncer.callPolicy('create', new PostClass()))
   })
 
   test('it should test create method of correct Policy for json object', assert => {
     Gate.policy(post, new PostPolicy())
 
-    assert.isTrue(Bouncer.create(post))
+    assert.isTrue(Bouncer.callPolicy('create', post))
   })
 
   test('it should test update method of correct Policy for ES2015 instantiated class', assert => {
     Gate.policy(PostClass, new PostPolicy())
 
-    assert.isTrue(Bouncer.update(new PostClass()))
+    assert.isTrue(Bouncer.callPolicy('update', new PostClass()))
   })
 
   test('it should test update method of correct Policy for json object', assert => {
     Gate.policy(post, new PostPolicy())
 
-    assert.isTrue(Bouncer.update(post))
+    assert.isTrue(Bouncer.callPolicy('update', post))
   })
 
   test('it should test delete method of correct Policy for ES2015 instantiated class', assert => {
     Gate.policy(PostClass, new PostPolicy())
 
-    assert.isFalse(Bouncer.delete(new PostClass()))
+    assert.isFalse(Bouncer.callPolicy('delete', new PostClass()))
   })
 
   test('it should test delete method of correct Policy for json object', assert => {
     Gate.policy(post, new PostPolicy())
 
-    assert.isFalse(Bouncer.delete(post))
+    assert.isFalse(Bouncer.callPolicy('delete', post))
   })
 })

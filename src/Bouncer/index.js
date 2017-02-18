@@ -59,45 +59,18 @@ class Bouncer {
   }
 
   /**
-   * Verifies the update policy for the given resource.
+   * Call the given policy method.
    *
-   * @method create
-   * @param  {function|object} resource
-   * @return {boolean}
-   */
-  create (resource) {
-    const resourceName = Helpers.formatResourceName(resource)
-    const policy = Storage.retrievePolicy(resourceName)
-
-    return policy.create(this.$user)
-  }
-
-  /**
-   * Verifies the update policy for the given resource.
-   *
-   * @method update
+   * @method callPolicy
+   * @param  {string} ability
    * @param  {object} resource
    * @return {boolean}
    */
-  update (resource) {
+  callPolicy (ability, resource) {
     const resourceName = Helpers.formatResourceName(resource)
     const policy = Storage.retrievePolicy(resourceName)
 
-    return policy.update(this.$user, resource)
-  }
-
-  /**
-   * Verifies the delete policy for the given resource.
-   *
-   * @method delete
-   * @param  {object} resource
-   * @return {boolean}
-   */
-  delete (resource) {
-    const resourceName = Helpers.formatResourceName(resource)
-    const policy = Storage.retrievePolicy(resourceName)
-
-    return policy.delete(this.$user, resource)
+    return policy[ability](this.$user, resource)
   }
 
 }
