@@ -9,6 +9,8 @@
 const Helpers = require('../Helpers')
 const Storage = require('../Storage').instance
 const InvalidUser = require('../Exceptions').InvalidUser
+const GateNotFound = require('../Exceptions').GateNotFound
+const PolicyNotFound = require('../Exceptions').PolicyNotFound
 
  /**
   * @class Bouncer
@@ -66,6 +68,10 @@ class Bouncer {
   for (resource) {
     const gate = Storage.retrieveGate(this.$gate)
 
+    if (!gate) {
+      throw new GateNotFound(`The gate ${this.$gate} has not been found.`)
+    }
+
     return gate(this.$user, resource)
   }
 
@@ -80,6 +86,10 @@ class Bouncer {
   callPolicy (ability, resource) {
     const resourceName = Helpers.formatResourceName(resource)
     const policy = Storage.retrievePolicy(resourceName)
+
+    if (!policy) {
+      throw new PolicyNotFound(`The policy for ${resourceName} has not been found.`)
+    }
 
     return policy[ability](this.$user, resource)
   }
