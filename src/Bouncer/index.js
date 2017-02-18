@@ -46,6 +46,17 @@ class Bouncer {
   }
 
   /**
+   * Registers the gate name.
+   *
+   * @method pass
+   * @param  {string} ability
+   * @return {this}
+   */
+  pass (gate) {
+    this.goThroughGate(gate)
+  }
+
+  /**
    * Verifies the given gate for the given resource.
    *
    * @method for
