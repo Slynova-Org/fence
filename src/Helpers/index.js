@@ -20,6 +20,16 @@ class Helpers {
     return resource
   }
 
+  /**
+   * @static
+   * @method isGenerator
+   * @param  {function} fn
+   * @return {boolean}
+   */
+  static isGenerator (fn) {
+    return fn.constructor.name === 'GeneratorFunction'
+  }
+
 }
 
 module.exports = Helpers

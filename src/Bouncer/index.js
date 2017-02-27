@@ -6,6 +6,7 @@
  * @copyright Slynova - Romain Lanz <romain.lanz@slynova.ch>
  */
 
+const co = require('co')
 const Helpers = require('../Helpers')
 const Storage = require('../Storage').instance
 const InvalidUser = require('../Exceptions').InvalidUser
@@ -72,6 +73,12 @@ class Bouncer {
       throw new GateNotFound(`The gate ${this.$gate} has not been found.`)
     }
 
+    if (Helpers.isGenerator(gate)) {
+      return co.wrap(function * () {
+        return yield gate(this.$user, resource)
+      })
+    }
+
     return gate(this.$user, resource)
   }
 
@@ -89,6 +96,12 @@ class Bouncer {
 
     if (!policy) {
       throw new PolicyNotFound(`The policy for ${resourceName} has not been found.`)
+    }
+
+    if (Helpers.isGenerator(policy[ability])) {
+      return co.wrap(function * () {
+        return yield policy[ability](this.$user, resource)
+      })
     }
 
     return policy[ability](this.$user, resource)

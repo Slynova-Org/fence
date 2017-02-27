@@ -32,6 +32,7 @@
     "require-all": "^2.2.0"
   },
   "dependencies": {
+    "co": "^4.6.0",
     "node-exceptions": "^1.0.3"
   }
 }
