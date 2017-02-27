@@ -67,6 +67,10 @@ class Guard {
    */
   static denies (ability, resource) {
     try {
+      if (Guard.$correspondsToPolicy(resource)) {
+        return !(new Bouncer()).callPolicy(ability, resource)
+      }
+
       return !(new Bouncer()).goThroughGate(ability).for(resource)
     } catch (e) {
       return true
