@@ -45,13 +45,13 @@ class Guard {
    * @param  {object|string} resource
    * @return {boolean}
    */
-  static allows (ability, resource) {
+  static * allows (ability, resource) {
     try {
       if (Guard.$correspondsToPolicy(resource)) {
-        return (new Bouncer()).callPolicy(ability, resource)
+        return yield (new Bouncer()).callPolicy(ability, resource)
       }
 
-      return (new Bouncer()).goThroughGate(ability).for(resource)
+      return yield (new Bouncer()).goThroughGate(ability).for(resource)
     } catch (e) {
       return false
     }
@@ -65,13 +65,13 @@ class Guard {
    * @param  {object|string} resource
    * @return {boolean}
    */
-  static denies (ability, resource) {
+  static * denies (ability, resource) {
     try {
       if (Guard.$correspondsToPolicy(resource)) {
-        return !(new Bouncer()).callPolicy(ability, resource)
+        return yield !(new Bouncer()).callPolicy(ability, resource)
       }
 
-      return !(new Bouncer()).goThroughGate(ability).for(resource)
+      return yield !(new Bouncer()).goThroughGate(ability).for(resource)
     } catch (e) {
       return true
     }

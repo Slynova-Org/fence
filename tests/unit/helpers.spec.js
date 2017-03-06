@@ -15,8 +15,8 @@ test.group('Helpers', group => {
     const fn = function * () {}
     const fn2 = function () {}
 
-    assert.isTrue(Helpers.isGenerator(fn))
-    assert.isFalse(Helpers.isGenerator(fn2))
+    assert.isTrue(Helpers.$isGenerator(fn))
+    assert.isFalse(Helpers.$isGenerator(fn2))
   })
 
 })

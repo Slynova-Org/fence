@@ -2,6 +2,12 @@
 
 class PostPolicy {
 
+  * show (user, post) {
+    return yield new Promise((resolve, reject) => {
+      resolve(true)
+    })
+  }
+
   create (user) {
     return user.id === 1
   }

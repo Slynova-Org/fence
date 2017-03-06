@@ -1,4 +1,5 @@
 const test = require('japa')
+const co = require('co')
 const PostClass = require('../stubs/Post')
 const user = require('../stubs/user.json')
 const post = require('../stubs/post.json')
@@ -31,9 +32,11 @@ test.group('Bouncer', group => {
   })
 
   test('goThroughGate should be chainable', assert => {
+    co(function * () {
       const bounce = Bouncer.goThroughGate('test-gate')
 
       assert.equal(bounce, Bouncer)
+    })
   })
 
   test('it should store the gate you want to go through', assert => {
@@ -45,65 +48,93 @@ test.group('Bouncer', group => {
   test('it should send the user to the gate', assert => {
     let userCopy = null
     Gate.define('test-gate', user => userCopy = user)
-    Bouncer.goThroughGate('test-gate').for({})
+    co(function * () {
+      yield Bouncer.goThroughGate('test-gate').for({})
 
-    assert.equal(userCopy, user)
+      assert.equal(userCopy, user)
+    })
   })
 
   test('it should send the resource to the gate', assert => {
     Gate.define('test-gate', (user, resource) => resource.id = 2)
-    Bouncer.goThroughGate('test-gate').for(post)
+    co(function * () {
+      yield Bouncer.goThroughGate('test-gate').for(post)
 
-    assert.equal(post.id, 2)
+      assert.equal(post.id, 2)
+    })
   })
 
   test('it should retrieve the gate and call it', assert => {
     let failing = true
     Gate.define('test-gate', () => failing = false)
-    Bouncer.goThroughGate('test-gate').for({})
+    co(function * () {
+      yield Bouncer.goThroughGate('test-gate').for({})
 
-    assert.isFalse(failing)
+      assert.isFalse(failing)
+    })
   })
 
   test('it should test create method of correct Policy for ES2015 class', assert => {
     Gate.policy(PostClass, new PostPolicy())
 
-    assert.isTrue(Bouncer.callPolicy('create', PostClass))
+    co(function * () {
+      assert.isTrue(yield Bouncer.callPolicy('create', PostClass))
+    })
   })
 
   test('it should test create method of correct Policy for ES2015 instantiated class', assert => {
     Gate.policy(PostClass, new PostPolicy())
 
-    assert.isTrue(Bouncer.callPolicy('create', new PostClass()))
+    co(function * () {
+      assert.isTrue(yield Bouncer.callPolicy('create', new PostClass()))
+    })
   })
 
   test('it should test create method of correct Policy for json object', assert => {
     Gate.policy(post, new PostPolicy())
 
-    assert.isTrue(Bouncer.callPolicy('create', post))
+    co(function * () {
+      assert.isTrue(yield Bouncer.callPolicy('create', post))
+    })
   })
 
   test('it should test update method of correct Policy for ES2015 instantiated class', assert => {
     Gate.policy(PostClass, new PostPolicy())
 
-    assert.isTrue(Bouncer.callPolicy('update', new PostClass()))
+    co(function * () {
+      assert.isTrue(yield Bouncer.callPolicy('update', new PostClass()))
+    })
   })
 
   test('it should test update method of correct Policy for json object', assert => {
     Gate.policy(post, new PostPolicy())
 
-    assert.isTrue(Bouncer.callPolicy('update', post))
+    co(function * () {
+      assert.isTrue(yield Bouncer.callPolicy('update', post))
+    })
+  })
+
+  test('it should handle async policy method', assert => {
+    Gate.policy(post, new PostPolicy())
+
+    co(function * () {
+      assert.isTrue(yield Bouncer.callPolicy('show', post))
+    })
   })
 
   test('it should test delete method of correct Policy for ES2015 instantiated class', assert => {
     Gate.policy(PostClass, new PostPolicy())
 
-    assert.isFalse(Bouncer.callPolicy('delete', new PostClass()))
+    co(function * () {
+      assert.isFalse(yield Bouncer.callPolicy('delete', new PostClass()))
+    })
   })
 
   test('it should test delete method of correct Policy for json object', assert => {
     Gate.policy(post, new PostPolicy())
 
-    assert.isFalse(Bouncer.callPolicy('delete', post))
+    co(function * () {
+      assert.isFalse(yield Bouncer.callPolicy('delete', post))
+    })
   })
 })

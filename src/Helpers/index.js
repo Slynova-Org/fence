@@ -1,5 +1,7 @@
 'use strict'
 
+const co = require('co')
+
 class Helpers {
 
   /**
@@ -25,9 +27,35 @@ class Helpers {
    * @method isGenerator
    * @param  {function} fn
    * @return {boolean}
+   *
+   * @private
    */
-  static isGenerator (fn) {
+  static $isGenerator (fn) {
     return fn.constructor.name === 'GeneratorFunction'
+  }
+
+  /**
+   * @static
+   * @method isGenerator
+   * @param  {function} fn
+   * @return {function}
+   *
+   * @private
+   */
+  static $wrapGenerator (fn) {
+    return co.wrap(function * () {
+      return yield fn.apply(this, arguments)
+    })
+  }
+
+  /**
+   * @static
+   * @method wrapIfGenerator
+   * @param  {function} fn
+   * @return {boolean}
+   */
+  static wrapIfGenerator (fn) {
+    return Helpers.$isGenerator(fn) ? Helpers.$wrapGenerator(fn) : fn
   }
 
 }
