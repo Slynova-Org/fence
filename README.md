@@ -32,8 +32,8 @@ $ yarn add node-fence
 When you require the package in your file, it will give you access to the `Guard` and `Gate` class.<br>
 
 ```javascript
-const Guard = require('node-fence').Guard
 const Gate = require('node-fence').Gate
+const Guard = require('node-fence').Guard
 ```
 
 :point_right: [Read the Official Documentation](https://github.com/Slynova-Org/node-fence/wiki)
