@@ -26,13 +26,13 @@
     "url": "https://github.com/Slynova-Org/node-fence/issues"
   },
   "devDependencies": {
-    "coveralls": "^2.11.15",
+    "co": "^4.6.0",
+    "coveralls": "^2.12.0",
     "istanbul": "^0.4.5",
-    "japa": "^1.0.0",
+    "japa": "^1.0.1",
     "require-all": "^2.2.0"
   },
   "dependencies": {
-    "co": "^4.6.0",
     "node-exceptions": "^1.0.3"
   }
 }
