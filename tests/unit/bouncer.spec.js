@@ -74,6 +74,28 @@ test.group('Bouncer', group => {
     })
   })
 
+  test('it should provide short syntax to go through a gate', assert => {
+    let failing = true
+    Gate.define('test-gate', () => failing = false)
+    co(function * () {
+      yield Bouncer.pass('test-gate').for({})
+
+      assert.isFalse(failing)
+    })
+  })
+
+  test('it should throw an exception when no gate is found', assert => {
+    co(function * () {
+      try {
+        yield Bouncer.pass('test-gate').for({})
+        assert.isTrue(false)
+      } catch (e) {
+        assert.equal('GateNotFound', e.name)
+        assert.equal('The gate test-gate has not been found.', e.message)
+      }
+    })
+  })
+
   test('it should test create method of correct Policy for ES2015 class', assert => {
     Gate.policy(PostClass, new PostPolicy())
 
@@ -119,6 +141,18 @@ test.group('Bouncer', group => {
 
     co(function * () {
       assert.isTrue(yield Bouncer.callPolicy('show', post))
+    })
+  })
+
+  test('it should throw an exception when no policy is found', assert => {
+    co(function * () {
+      try {
+        yield Bouncer.callPolicy('show', post)
+        assert.isTrue(false)
+      } catch (e) {
+        assert.equal('PolicyNotFound', e.name)
+        assert.equal('The policy for Post has not been found.', e.message)
+      }
     })
   })
 

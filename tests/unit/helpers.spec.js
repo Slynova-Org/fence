@@ -11,12 +11,4 @@ test.group('Helpers', group => {
     assert.equal(Helpers.formatResourceName(new PostClass()), 'Post')
   })
 
-  test('it should know when the function is a generator or not', assert => {
-    const fn = function * () {}
-    const fn2 = function () {}
-
-    assert.isTrue(Helpers.$isGenerator(fn))
-    assert.isFalse(Helpers.$isGenerator(fn2))
-  })
-
 })

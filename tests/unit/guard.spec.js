@@ -33,6 +33,7 @@ test.group('Guard', group => {
       assert.isTrue(yield Guard.allows('update', (new PostClass())))
       assert.isTrue(yield Guard.allows('create', (new PostClass())))
       assert.isFalse(yield Guard.allows('delete', (new PostClass())))
+      assert.isTrue(yield Guard.denies('delete', (new PostClass())))
     })
   })
 
