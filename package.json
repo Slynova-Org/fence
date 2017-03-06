@@ -1,5 +1,5 @@
 {
-  "name": "node-fence",
+  "name": "@slynova/node-fence",
   "version": "1.0.0-alpha-5",
   "description": "Flexible and Fluent way to manage ACL in Node.js.",
   "keywords": [

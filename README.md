@@ -24,16 +24,16 @@ It lets you easily manage ACL with a fluent API easy to learn and to work with. 
 This package is available in the Node Package Repository and can be easily installed with [npm](https://docs.npmjs.com/getting-started/what-is-npm) or [yarn](https://yarnpkg.com).
 
 ```bash
-$ npm i --save node-fence
+$ npm i --save @slynova/node-fence
 # or
-$ yarn add node-fence
+$ yarn add @slynova/node-fence
 ```
 
 When you require the package in your file, it will give you access to the `Guard` and `Gate` class.<br>
 
 ```javascript
-const Gate = require('node-fence').Gate
-const Guard = require('node-fence').Guard
+const Gate = require('@slynova/node-fence').Gate
+const Guard = require('@slynova/node-fence').Guard
 ```
 
 :point_right: [Read the Official Documentation](https://github.com/Slynova-Org/node-fence/wiki)
