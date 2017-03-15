@@ -27,6 +27,13 @@ test.group('Gate', group => {
   })
 
   test('it should be able to define policy with ES2015 class', assert => {
+    Gate.policy(Post, PostPolicy)
+
+    assert.equal(Object.keys(Storage.$policies).length, 1)
+    assert.isDefined(Storage.$policies[Post.name])
+  })
+
+  test('it should be able to define policy with ES2015 class [alt]', assert => {
     Gate.policy(Post, new PostPolicy())
 
     assert.equal(Object.keys(Storage.$policies).length, 1)

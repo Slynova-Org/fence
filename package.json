@@ -15,7 +15,7 @@
   "license": "MIT",
   "main": "src/index.js",
   "scripts": {
-    "test": "node tests/test.js",
+    "test": "node --harmony-async-await tests/test.js",
     "test:coverage": "./node_modules/.bin/istanbul cover -x tests/test.js tests/test.js && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
   },
   "repository": {

@@ -29,7 +29,19 @@ test.group('Guard', group => {
     Gate.policy(PostClass, new PostPolicy())
     Guard.setDefaultUser(user)
 
-    co(function * () {
+    return co(function * () {
+      assert.isTrue(yield Guard.allows('update', (new PostClass())))
+      assert.isTrue(yield Guard.allows('create', (new PostClass())))
+      assert.isFalse(yield Guard.allows('delete', (new PostClass())))
+      assert.isTrue(yield Guard.denies('delete', (new PostClass())))
+    })
+  })
+
+  test('it should be able to execute policy [alt]', assert => {
+    Gate.policy(PostClass, PostPolicy)
+    Guard.setDefaultUser(user)
+
+    return co(function * () {
       assert.isTrue(yield Guard.allows('update', (new PostClass())))
       assert.isTrue(yield Guard.allows('create', (new PostClass())))
       assert.isFalse(yield Guard.allows('delete', (new PostClass())))
@@ -38,44 +50,44 @@ test.group('Guard', group => {
   })
 
   test('it should provide short syntax for allows', assert => {
-    Gate.define('post.update', (user, resource) => user.id === resource.author_id)
+    Gate.define('post.update', function * (user, resource) { return user.id === resource.author_id })
     Guard.setDefaultUser(user)
 
-    co(function * () {
+    return co(function * () {
       assert.isTrue(yield Guard.allows('post.update', post))
     })
   })
 
   test('it should provide short syntax for denies', assert => {
-    Gate.define('post.update', (user, resource) => user.id === resource.author_id)
+    Gate.define('post.update', function * (user, resource) { return user.id === resource.author_id } )
     Guard.setDefaultUser(user)
 
-    co(function * () {
+    return co(function * () {
       assert.isFalse(yield Guard.denies('post.update', post))
     })
   })
 
-  test('it should allow to not use resource', assert => {
+  test('it should allow to use no resource', assert => {
+    Gate.define('show-hello-world', function * (user) { return false })
     Guard.setDefaultUser(user)
-    Gate.define('show-hello-world', user => false)
 
-    co(function * () {
+    return co(function * () {
       assert.isFalse(yield Guard.allows('show-hello-world'))
     })
   })
 
-  test('it should denied with short syntax by default when not auth for allows', assert => {
-    Gate.define('post.update', (user, resource) => user.id === resource.author_id)
+  test("it should denied with short syntax by default when you're not auth for allows", assert => {
+    Gate.define('post.update', function * (user, resource) { return user.id === resource.author_id })
 
-    co(function * () {
+    return co(function * () {
       assert.isFalse(yield Guard.allows('post.update', post))
     })
   })
 
-  test('it should allows with short syntax by default when not auth for denies', assert => {
-    Gate.define('post.update', (user, resource) => user.id === resource.author_id)
+  test("it should allows with short syntax by default when you're not auth for denies", assert => {
+    Gate.define('post.update', function * (user, resource) { return user.id === resource.author_id })
 
-    co(function * () {
+    return co(function * () {
       assert.isTrue(yield Guard.denies('post.update', post))
     })
   })

@@ -8,15 +8,15 @@ class PostPolicy {
     })
   }
 
-  create (user) {
+  * create (user) {
     return user.id === 1
   }
 
-  update (user, post) {
+  * update (user, post) {
     return user.id === post.author_id
   }
 
-  delete (user, post) {
+  * delete (user, post) {
     return false
   }
 

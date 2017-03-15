@@ -47,8 +47,9 @@ test.group('Bouncer', group => {
 
   test('it should send the user to the gate', assert => {
     let userCopy = null
-    Gate.define('test-gate', user => userCopy = user)
-    co(function * () {
+    Gate.define('test-gate', function * (user) { userCopy = user })
+
+    return co(function * () {
       yield Bouncer.goThroughGate('test-gate').for({})
 
       assert.equal(userCopy, user)
@@ -56,18 +57,18 @@ test.group('Bouncer', group => {
   })
 
   test('it should send the resource to the gate', assert => {
-    Gate.define('test-gate', (user, resource) => resource.id = 2)
-    co(function * () {
-      yield Bouncer.goThroughGate('test-gate').for(post)
+    Gate.define('test-gate', function * (user, resource) { assert.equal(resource.id, 1) })
 
-      assert.equal(post.id, 2)
+    return  co(function * () {
+      yield Bouncer.goThroughGate('test-gate').for(post)
     })
   })
 
   test('it should retrieve the gate and call it', assert => {
     let failing = true
-    Gate.define('test-gate', () => failing = false)
-    co(function * () {
+    Gate.define('test-gate', function * () { failing = false })
+
+    return co(function * () {
       yield Bouncer.goThroughGate('test-gate').for({})
 
       assert.isFalse(failing)
@@ -76,8 +77,9 @@ test.group('Bouncer', group => {
 
   test('it should provide short syntax to go through a gate', assert => {
     let failing = true
-    Gate.define('test-gate', () => failing = false)
-    co(function * () {
+    Gate.define('test-gate', function * () { failing = false })
+
+    return co(function * () {
       yield Bouncer.pass('test-gate').for({})
 
       assert.isFalse(failing)
@@ -85,7 +87,7 @@ test.group('Bouncer', group => {
   })
 
   test('it should throw an exception when no gate is found', assert => {
-    co(function * () {
+    return co(function * () {
       try {
         yield Bouncer.pass('test-gate').for({})
         assert.isTrue(false)
@@ -99,7 +101,7 @@ test.group('Bouncer', group => {
   test('it should test create method of correct Policy for ES2015 class', assert => {
     Gate.policy(PostClass, new PostPolicy())
 
-    co(function * () {
+    return co(function * () {
       assert.isTrue(yield Bouncer.callPolicy('create', PostClass))
     })
   })
@@ -107,7 +109,7 @@ test.group('Bouncer', group => {
   test('it should test create method of correct Policy for ES2015 instantiated class', assert => {
     Gate.policy(PostClass, new PostPolicy())
 
-    co(function * () {
+    return co(function * () {
       assert.isTrue(yield Bouncer.callPolicy('create', new PostClass()))
     })
   })
@@ -115,7 +117,7 @@ test.group('Bouncer', group => {
   test('it should test create method of correct Policy for json object', assert => {
     Gate.policy(post, new PostPolicy())
 
-    co(function * () {
+    return co(function * () {
       assert.isTrue(yield Bouncer.callPolicy('create', post))
     })
   })
@@ -123,7 +125,7 @@ test.group('Bouncer', group => {
   test('it should test update method of correct Policy for ES2015 instantiated class', assert => {
     Gate.policy(PostClass, new PostPolicy())
 
-    co(function * () {
+    return co(function * () {
       assert.isTrue(yield Bouncer.callPolicy('update', new PostClass()))
     })
   })
@@ -131,7 +133,7 @@ test.group('Bouncer', group => {
   test('it should test update method of correct Policy for json object', assert => {
     Gate.policy(post, new PostPolicy())
 
-    co(function * () {
+    return co(function * () {
       assert.isTrue(yield Bouncer.callPolicy('update', post))
     })
   })
@@ -139,13 +141,13 @@ test.group('Bouncer', group => {
   test('it should handle async policy method', assert => {
     Gate.policy(post, new PostPolicy())
 
-    co(function * () {
+    return co(function * () {
       assert.isTrue(yield Bouncer.callPolicy('show', post))
     })
   })
 
   test('it should throw an exception when no policy is found', assert => {
-    co(function * () {
+    return co(function * () {
       try {
         yield Bouncer.callPolicy('show', post)
         assert.isTrue(false)
@@ -159,7 +161,7 @@ test.group('Bouncer', group => {
   test('it should test delete method of correct Policy for ES2015 instantiated class', assert => {
     Gate.policy(PostClass, new PostPolicy())
 
-    co(function * () {
+    return co(function * () {
       assert.isFalse(yield Bouncer.callPolicy('delete', new PostClass()))
     })
   })
@@ -167,7 +169,7 @@ test.group('Bouncer', group => {
   test('it should test delete method of correct Policy for json object', assert => {
     Gate.policy(post, new PostPolicy())
 
-    co(function * () {
+    return co(function * () {
       assert.isFalse(yield Bouncer.callPolicy('delete', post))
     })
   })

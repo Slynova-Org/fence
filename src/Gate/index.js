@@ -31,11 +31,15 @@ class Gate {
    *
    * @method policy
    * @param  {function|object|string} resource
-   * @param  {object} policy
+   * @param  {function|object} policy
    * @return {this}
    */
   static policy (resource, policy) {
     const resourceName = Helpers.formatResourceName(resource)
+
+    if (typeof policy === 'function') {
+      policy = new policy()
+    }
 
     Storage.storePolicy(resourceName, policy)
   }
