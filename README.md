@@ -39,6 +39,7 @@ const Guard = require('node-fence').Guard
 :point_right: [Read the Official Documentation](https://github.com/Slynova-Org/node-fence/wiki)
 
 <br>
+
 ## Contribution Guidelines
 
 Any pull requests or discussions are welcome.<br>
