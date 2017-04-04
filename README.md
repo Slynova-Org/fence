@@ -21,6 +21,8 @@ It lets you easily manage ACL with a fluent API easy to learn and to work with. 
 
 ## Getting Started
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Slynova-Org/node-fence.svg)](https://greenkeeper.io/)
+
 This package is available in the Node Package Repository and can be easily installed with [npm](https://docs.npmjs.com/getting-started/what-is-npm) or [yarn](https://yarnpkg.com).
 
 ```bash
