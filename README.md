@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="node-fence" src="https://cloud.githubusercontent.com/assets/2793951/22829562/7c8aa7c6-efa3-11e6-9e69-11b6c6c7a7b3.png">
+  <img alt="node-fence" src="https://user-images.githubusercontent.com/2793951/28426832-a49b1e36-6d74-11e7-906c-76de04742d39.png">
 </p>
 
 <p align="center">
