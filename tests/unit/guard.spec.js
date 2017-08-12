@@ -1,4 +1,3 @@
-const co = require('co')
 const test = require('japa')
 const PostClass = require('../stubs/Post')
 const user = require('../stubs/user.json')
@@ -8,7 +7,7 @@ const Guard = require('../../src/Guard')
 const PostPolicy = require('../stubs/PostPolicy')
 const Storage = require('../../src/Storage').instance
 
-test.group('Guard', group => {
+test.group('Guard', (group) => {
   group.beforeEach(() => {
     Storage.$reset()
   })
@@ -19,76 +18,62 @@ test.group('Guard', group => {
     assert.equal(bounce.constructor.name, 'Bouncer')
   })
 
-  test('it should store the default user', assert => {
+  test('it should store the default user', (assert) => {
     Guard.setDefaultUser(user)
 
     assert.equal(Storage.retrieveUser(), user)
   })
 
-  test('it should be able to execute policy', assert => {
+  test('it should be able to execute policy', async (assert) => {
     Gate.policy(PostClass, new PostPolicy())
     Guard.setDefaultUser(user)
 
-    return co(function * () {
-      assert.isTrue(yield Guard.allows('update', (new PostClass())))
-      assert.isTrue(yield Guard.allows('create', (new PostClass())))
-      assert.isFalse(yield Guard.allows('delete', (new PostClass())))
-      assert.isTrue(yield Guard.denies('delete', (new PostClass())))
-    })
+    assert.isTrue(await Guard.allows('update', (new PostClass())))
+    assert.isTrue(await Guard.allows('create', (new PostClass())))
+    assert.isFalse(await Guard.allows('delete', (new PostClass())))
+    assert.isTrue(await Guard.denies('delete', (new PostClass())))
   })
 
-  test('it should be able to execute policy [alt]', assert => {
+  test('it should be able to execute policy [alt]', async (assert) => {
     Gate.policy(PostClass, PostPolicy)
     Guard.setDefaultUser(user)
 
-    return co(function * () {
-      assert.isTrue(yield Guard.allows('update', (new PostClass())))
-      assert.isTrue(yield Guard.allows('create', (new PostClass())))
-      assert.isFalse(yield Guard.allows('delete', (new PostClass())))
-      assert.isTrue(yield Guard.denies('delete', (new PostClass())))
-    })
+    assert.isTrue(await Guard.allows('update', (new PostClass())))
+    assert.isTrue(await Guard.allows('create', (new PostClass())))
+    assert.isFalse(await Guard.allows('delete', (new PostClass())))
+    assert.isTrue(await Guard.denies('delete', (new PostClass())))
   })
 
-  test('it should provide short syntax for allows', assert => {
-    Gate.define('post.update', function * (user, resource) { return user.id === resource.author_id })
+  test('it should provide short syntax for allows', async (assert) => {
+    Gate.define('post.update', async (user, resource) => user.id === resource.author_id)
     Guard.setDefaultUser(user)
 
-    return co(function * () {
-      assert.isTrue(yield Guard.allows('post.update', post))
-    })
+    assert.isTrue(await Guard.allows('post.update', post))
   })
 
-  test('it should provide short syntax for denies', assert => {
-    Gate.define('post.update', function * (user, resource) { return user.id === resource.author_id } )
+  test('it should provide short syntax for denies', async (assert) => {
+    Gate.define('post.update', async (user, resource) => user.id === resource.author_id)
     Guard.setDefaultUser(user)
 
-    return co(function * () {
-      assert.isFalse(yield Guard.denies('post.update', post))
-    })
+    assert.isFalse(await Guard.denies('post.update', post))
   })
 
-  test('it should allow to use no resource', assert => {
-    Gate.define('show-hello-world', function * (user) { return false })
+  test('it should allow to use no resource', async (assert) => {
+    Gate.define('show-hello-world', async (user) => false)
     Guard.setDefaultUser(user)
 
-    return co(function * () {
-      assert.isFalse(yield Guard.allows('show-hello-world'))
-    })
+    assert.isFalse(await Guard.allows('show-hello-world'))
   })
 
-  test("it should denied with short syntax by default when you're not auth for allows", assert => {
-    Gate.define('post.update', function * (user, resource) { return user.id === resource.author_id })
+  test("it should denied with short syntax by default when you're not auth for allows", async (assert) => {
+    Gate.define('post.update', async (user, resource) => user.id === resource.author_id)
 
-    return co(function * () {
-      assert.isFalse(yield Guard.allows('post.update', post))
-    })
+    assert.isFalse(await Guard.allows('post.update', post))
   })
 
-  test("it should allows with short syntax by default when you're not auth for denies", assert => {
-    Gate.define('post.update', function * (user, resource) { return user.id === resource.author_id })
+  test("it should allows with short syntax by default when you're not auth for denies", async (assert) => {
+    Gate.define('post.update', async (user, resource) => user.id === resource.author_id)
 
-    return co(function * () {
-      assert.isTrue(yield Guard.denies('post.update', post))
-    })
+    assert.isTrue(await Guard.denies('post.update', post))
   })
 })

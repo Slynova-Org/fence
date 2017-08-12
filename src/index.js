@@ -9,6 +9,4 @@
 const Gate = require('./Gate')
 const Guard = require('./Guard')
 
-module.exports = {
-  Gate, Guard
-}
+module.exports = { Gate, Guard }

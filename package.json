@@ -1,6 +1,6 @@
 {
   "name": "@slynova/fence",
-  "version": "1.0.0-alpha",
+  "version": "1.0.0-alpha-1",
   "description": "Flexible and Fluent way to manage ACL in Node.js.",
   "keywords": [
     "acl",
@@ -15,7 +15,7 @@
   "license": "MIT",
   "main": "src/index.js",
   "scripts": {
-    "test": "node --harmony-async-await tests/test.js",
+    "test": "node tests/test.js",
     "test:coverage": "./node_modules/.bin/istanbul cover -x tests/test.js tests/test.js && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
   },
   "repository": {
@@ -26,13 +26,12 @@
     "url": "https://github.com/Slynova-Org/node-fence/issues"
   },
   "devDependencies": {
-    "co": "^4.6.0",
-    "coveralls": "^2.12.0",
+    "coveralls": "^2.13.1",
     "istanbul": "^0.4.5",
-    "japa": "^1.0.1",
+    "japa": "^1.0.3",
     "require-all": "^2.2.0"
   },
   "dependencies": {
-    "node-exceptions": "^2.0.0"
+    "node-exceptions": "^2.0.2"
   }
 }
