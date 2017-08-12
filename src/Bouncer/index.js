@@ -65,14 +65,14 @@ class Bouncer {
    * @param  {object|string} resource
    * @return {boolean}
    */
-  * for (resource) {
+  async for (resource) {
     const gate = Storage.retrieveGate(this.$gate)
 
     if (!gate) {
       throw new GateNotFound(`The gate ${this.$gate} has not been found.`)
     }
 
-    return yield gate(this.$user, resource)
+    return gate(this.$user, resource)
   }
 
   /**
@@ -83,7 +83,7 @@ class Bouncer {
    * @param  {object} resource
    * @return {boolean}
    */
-  * callPolicy (ability, resource) {
+  async callPolicy (ability, resource) {
     const resourceName = Helpers.formatResourceName(resource)
     const policy = Storage.retrievePolicy(resourceName)
 
@@ -91,7 +91,7 @@ class Bouncer {
       throw new PolicyNotFound(`The policy for ${resourceName} has not been found.`)
     }
 
-    return yield policy[ability](this.$user, resource)
+    return policy[ability](this.$user, resource)
   }
 
 }

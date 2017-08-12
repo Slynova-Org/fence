@@ -2,21 +2,21 @@
 
 class PostPolicy {
 
-  * show (user, post) {
-    return yield new Promise((resolve, reject) => {
+  async show (user, post) {
+    return new Promise((resolve, reject) => {
       resolve(true)
     })
   }
 
-  * create (user) {
+  async create (user) {
     return user.id === 1
   }
 
-  * update (user, post) {
+  async update (user, post) {
     return user.id === post.author_id
   }
 
-  * delete (user, post) {
+  async delete (user, post) {
     return false
   }
 
