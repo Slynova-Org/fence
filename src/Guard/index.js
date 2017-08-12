@@ -10,9 +10,9 @@ const Helpers = require('../Helpers')
 const Bouncer = require('../Bouncer')
 const Storage = require('../Storage').instance
 
- /**
-  * @class Guard
-  */
+/**
+ * @class Guard
+ */
 class Guard {
 
   /**
