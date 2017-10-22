@@ -13,8 +13,6 @@
 `node-fence` is a framework-agnostic package which provides powerful ACL abilities to [Node.js](https://nodejs.org).<br>
 It lets you easily manage ACL with a fluent API easy to learn and to work with. :rocket:
 
-> :pray: This package is under active development, some breaking changes may occur before the first release.
-
 <a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/CEKaT5pQWy9iaHvVKQCpHJpd/Slynova-Org/node-fence'>  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/CEKaT5pQWy9iaHvVKQCpHJpd/Slynova-Org/node-fence.svg' /></a>
 
 <hr>
@@ -25,7 +23,7 @@ It lets you easily manage ACL with a fluent API easy to learn and to work with. 
 This package is available in the Node Package Repository and can be easily installed with [npm](https://docs.npmjs.com/getting-started/what-is-npm) or [yarn](https://yarnpkg.com).
 
 ```bash
-$ npm i --save @slynova/fence
+$ npm i @slynova/fence
 # or
 $ yarn add @slynova/fence
 ```
@@ -36,11 +34,63 @@ When you require the package in your file, it will give you access to the `Guard
 const { Gate, Guard } = require('@slynova/fence')
 ```
 
-:point_right: [Read the Official Documentation](https://github.com/Slynova-Org/node-fence/wiki)
+<br>
+
+## Gate & Policy
+
+A `Gate` is a closure that returns a boolean to determine if the user is allowed to perform a certain action.
+Instead of using a closure, you can also write a `Policy`. Those are classes that let you organise your authorisation around a particular model or resource.
+
+### Writing a Gate
+
+To define a new Gate you will need to call the `define` method on the `Gate` facade.
+
+```js
+Gate.define('name-of-the-gate', async (user, resource) => {
+  // Payload
+  // e.g. return user.id === resource.author_id
+})
+```
+
+### Writing a Policy
+
+To define a new Policy you will need to call the `policy` method on the `Gate` facade.
+
+```js
+Gate.policy(post, PostPolicy)
+```
+
+The first argument is the object you want to define the policy for. It can be a [simple JSON](https://github.com/Slynova-Org/node-fence/blob/master/tests/stubs/post.json) or an [ES2015 class](https://github.com/Slynova-Org/node-fence/blob/master/tests/stubs/Post.js).
+
+The policy must be an [ES2015 class](https://github.com/Slynova-Org/node-fence/blob/master/tests/stubs/PostPolicy.js).
 
 <br>
+
+## Guard
+
+The `Guard` is the guardian of your gates.
+
+Most of the time, you'll want to use the authenticated user to test your gates. For this reason, `node-fence` let you use the method `Guard.setDefaultUser()`.
+
+```js
+// The user can be retrieve from the auth middleware you are using
+Guard.setDefaultUser({ id: 1, username: 'romainlanz' })
+```
+
+### Testing a Gate
+
+You can test your gate with a short or a long syntax, it depends if you have defined a default user or not.
+
+```js
+// Long
+await Guard.can(user).goThroughGate('XXX').for(resource) // true or false
+
+// Short
+await Guard.allows('XXX', resource) // true or false
+await Guard.denies('XXX', resource) // true or false
+```
 
 ## Contribution Guidelines
 
 Any pull requests or discussions are welcome.<br>
-Note that every pull request providing new feature or correcting a bug should be created with appropriate unit tests.
+Note that every pull request providing a new feature or correcting a bug should be created with appropriate unit tests.
