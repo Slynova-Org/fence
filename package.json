@@ -32,6 +32,6 @@
     "require-all": "^2.2.0"
   },
   "dependencies": {
-    "node-exceptions": "^2.0.2"
+    "node-exceptions": "^3.0.0"
   }
 }
