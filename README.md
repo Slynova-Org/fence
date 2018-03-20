@@ -13,8 +13,6 @@
 `node-fence` is a framework-agnostic package which provides powerful ACL abilities to [Node.js](https://nodejs.org).<br>
 It lets you easily manage ACL with a fluent API easy to learn and to work with. :rocket:
 
-<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/CEKaT5pQWy9iaHvVKQCpHJpd/Slynova-Org/node-fence'>  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/CEKaT5pQWy9iaHvVKQCpHJpd/Slynova-Org/node-fence.svg' /></a>
-
 <hr>
 <br>
 
