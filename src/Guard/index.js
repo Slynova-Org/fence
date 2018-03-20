@@ -14,7 +14,6 @@ const Storage = require('../Storage').instance
  * @class Guard
  */
 class Guard {
-
   /**
    * Set a default user for any call.
    *
@@ -86,7 +85,6 @@ class Guard {
 
     return false
   }
-
 }
 
 module.exports = Guard

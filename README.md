@@ -90,6 +90,8 @@ await Guard.allows('XXX', resource) // true or false
 await Guard.denies('XXX', resource) // true or false
 ```
 
+<br>
+
 ## Contribution Guidelines
 
 Any pull requests or discussions are welcome.<br>

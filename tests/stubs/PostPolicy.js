@@ -8,15 +8,15 @@ class PostPolicy {
     })
   }
 
-  async create (user) {
+  create (user) {
     return user.id === 1
   }
 
-  async update (user, post) {
+  update (user, post) {
     return user.id === post.author_id
   }
 
-  async delete (user, post) {
+  delete (user, post) {
     return false
   }
 

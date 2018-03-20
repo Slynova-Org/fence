@@ -9,11 +9,10 @@
 const Helpers = require('../Helpers')
 const Storage = require('../Storage').instance
 
- /**
-  * @class Gate
-  */
+/**
+ * @class Gate
+ */
 class Gate {
-
   /**
    * Defines a new Gate.
    *
@@ -38,12 +37,11 @@ class Gate {
     const resourceName = Helpers.formatResourceName(resource)
 
     if (typeof policy === 'function') {
-      policy = new policy()
+      policy = new policy() // eslint-disable-line new-cap
     }
 
     Storage.storePolicy(resourceName, policy)
   }
-
 }
 
 module.exports = Gate

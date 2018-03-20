@@ -1,21 +1,19 @@
 {
   "name": "@slynova/fence",
-  "version": "1.0.0-alpha-1",
+  "version": "1.0.0-beta.1",
   "description": "Flexible and Fluent way to manage ACL in Node.js.",
   "keywords": [
     "acl",
     "security",
     "ability",
-    "policy",
-    "fence",
-    "fluent",
-    "flexible"
+    "policy"
   ],
   "author": "Romain Lanz <romain.lanz@slynova.ch>",
   "license": "MIT",
   "main": "src/index.js",
   "scripts": {
-    "test": "node tests/test.js",
+    "lint": "eslint src",
+    "test": "npm run lint && node tests/test.js",
     "test:coverage": "./node_modules/.bin/istanbul cover -x tests/test.js tests/test.js && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
   },
   "repository": {
@@ -26,7 +24,9 @@
     "url": "https://github.com/Slynova-Org/node-fence/issues"
   },
   "devDependencies": {
+    "@slynova/eslint-config": "^1.0.4",
     "coveralls": "^3.0.0",
+    "eslint": "^4.19.0",
     "istanbul": "^0.4.5",
     "japa": "^1.0.3",
     "require-all": "^2.2.0"

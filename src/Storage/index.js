@@ -6,16 +6,15 @@
  * @copyright Slynova - Romain Lanz <romain.lanz@slynova.ch>
  */
 
-let instance = Symbol()
-let instanceEnforcer = Symbol()
+const instance = Symbol('Instance')
+const instanceEnforcer = Symbol('InstanceEnforcer')
 
- /**
-  * Internal Storage used to store gates & rules.
-  *
-  * @class Storage
-  */
+/**
+ * Internal Storage used to store gates & rules.
+ *
+ * @class Storage
+ */
 class Storage {
-
   /**
    * Constructor.
    *
@@ -123,7 +122,6 @@ class Storage {
     this.$policies = {}
     this.$defaultUser = null
   }
-
 }
 
 module.exports = Storage
