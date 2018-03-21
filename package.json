@@ -1,6 +1,6 @@
 {
   "name": "@slynova/fence",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "description": "Flexible and Fluent way to manage ACL in Node.js.",
   "keywords": [
     "acl",
