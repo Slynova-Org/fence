@@ -42,42 +42,42 @@ test.group('Bouncer', (group) => {
     assert.equal('test-gate', Bouncer.$gate)
   })
 
-  test('it should send the user to the gate', async (assert) => {
+  test('it should send the user to the gate', (assert) => {
     let userCopy = null
-    Gate.define('test-gate', async (user) => userCopy = user)
+    Gate.define('test-gate', (user) => userCopy = user)
 
-    await Bouncer.goThroughGate('test-gate').for({})
+    Bouncer.goThroughGate('test-gate').for({})
 
     assert.equal(userCopy, user)
   })
 
-  test('it should send the resource to the gate', async (assert) => {
+  test('it should send the resource to the gate', (assert) => {
     Gate.define('test-gate', async (user, resource) => assert.equal(resource.id, 1))
 
-    await Bouncer.goThroughGate('test-gate').for(post)
+    Bouncer.goThroughGate('test-gate').for(post)
   })
 
-  test('it should retrieve the gate and call it', async (assert) => {
+  test('it should retrieve the gate and call it', (assert) => {
     let failing = true
-    Gate.define('test-gate', async () => failing = false)
+    Gate.define('test-gate', () => failing = false)
 
-    await Bouncer.goThroughGate('test-gate').for({})
+    Bouncer.goThroughGate('test-gate').for({})
 
     assert.isFalse(failing)
   })
 
-  test('it should provide short syntax to go through a gate', async (assert) => {
+  test('it should provide short syntax to go through a gate', (assert) => {
     let failing = true
-    Gate.define('test-gate', async () => failing = false)
+    Gate.define('test-gate', () => failing = false)
 
-    await Bouncer.pass('test-gate').for({})
+    Bouncer.pass('test-gate').for({})
 
     assert.isFalse(failing)
   })
 
-  test('it should throw an exception when no gate is found', async (assert) => {
+  test('it should throw an exception when no gate is found', (assert) => {
     try {
-      await Bouncer.pass('test-gate').for({})
+      Bouncer.pass('test-gate').for({})
       assert.isTrue(false)
     } catch (e) {
       assert.equal('GateNotFound', e.name)
@@ -85,34 +85,34 @@ test.group('Bouncer', (group) => {
       }
   })
 
-  test('it should test create method of correct Policy for ES2015 class', async (assert) => {
+  test('it should test create method of correct Policy for ES2015 class', (assert) => {
     Gate.policy(PostClass, new PostPolicy())
 
-    assert.isTrue(await Bouncer.callPolicy('create', PostClass))
+    assert.isTrue(Bouncer.callPolicy('create', PostClass))
   })
 
-  test('it should test create method of correct Policy for ES2015 instantiated class', async (assert) => {
+  test('it should test create method of correct Policy for ES2015 instantiated class', (assert) => {
     Gate.policy(PostClass, new PostPolicy())
 
-    assert.isTrue(await Bouncer.callPolicy('create', new PostClass()))
+    assert.isTrue(Bouncer.callPolicy('create', new PostClass()))
   })
 
-  test('it should test create method of correct Policy for json object', async (assert) => {
+  test('it should test create method of correct Policy for json object', (assert) => {
     Gate.policy(post, new PostPolicy())
 
-    assert.isTrue(await Bouncer.callPolicy('create', post))
+    assert.isTrue(Bouncer.callPolicy('create', post))
   })
 
-  test('it should test update method of correct Policy for ES2015 instantiated class', async (assert) => {
+  test('it should test update method of correct Policy for ES2015 instantiated class', (assert) => {
     Gate.policy(PostClass, new PostPolicy())
 
-    assert.isTrue(await Bouncer.callPolicy('update', new PostClass()))
+    assert.isTrue(Bouncer.callPolicy('update', new PostClass()))
   })
 
-  test('it should test update method of correct Policy for json object', async (assert) => {
+  test('it should test update method of correct Policy for json object', (assert) => {
     Gate.policy(post, new PostPolicy())
 
-    assert.isTrue(await Bouncer.callPolicy('update', post))
+    assert.isTrue(Bouncer.callPolicy('update', post))
   })
 
   test('it should handle async policy method', async (assert) => {
@@ -121,9 +121,9 @@ test.group('Bouncer', (group) => {
     assert.isTrue(await Bouncer.callPolicy('show', post))
   })
 
-  test('it should throw an exception when no policy is found', async (assert) => {
+  test('it should throw an exception when no policy is found', (assert) => {
     try {
-      await Bouncer.callPolicy('show', post)
+      Bouncer.callPolicy('show', post)
       assert.isTrue(false)
     } catch (e) {
       assert.equal('PolicyNotFound', e.name)
@@ -131,15 +131,15 @@ test.group('Bouncer', (group) => {
     }
   })
 
-  test('it should test delete method of correct Policy for ES2015 instantiated class', async (assert) => {
+  test('it should test delete method of correct Policy for ES2015 instantiated class', (assert) => {
     Gate.policy(PostClass, new PostPolicy())
 
-    assert.isFalse(await Bouncer.callPolicy('delete', new PostClass()))
+    assert.isFalse(Bouncer.callPolicy('delete', new PostClass()))
   })
 
-  test('it should test delete method of correct Policy for json object', async (assert) => {
+  test('it should test delete method of correct Policy for json object', (assert) => {
     Gate.policy(post, new PostPolicy())
 
-    assert.isFalse(await Bouncer.callPolicy('delete', post))
+    assert.isFalse(Bouncer.callPolicy('delete', post))
   })
 })

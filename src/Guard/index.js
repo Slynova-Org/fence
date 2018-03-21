@@ -44,13 +44,13 @@ class Guard {
    * @param  {object|string} resource
    * @return {boolean}
    */
-  static async allows (ability, resource) {
+  static allows (ability, resource) {
     try {
       if (Guard.$correspondsToPolicy(resource)) {
-        return await (new Bouncer()).callPolicy(ability, resource)
+        return (new Bouncer()).callPolicy(ability, resource)
       }
 
-      return await (new Bouncer()).goThroughGate(ability).for(resource)
+      return (new Bouncer()).goThroughGate(ability).for(resource)
     } catch (e) {
       return false
     }
@@ -64,13 +64,13 @@ class Guard {
    * @param  {object|string} resource
    * @return {boolean}
    */
-  static async denies (ability, resource) {
+  static denies (ability, resource) {
     try {
       if (Guard.$correspondsToPolicy(resource)) {
-        return !(await (new Bouncer()).callPolicy(ability, resource))
+        return !(new Bouncer()).callPolicy(ability, resource)
       }
 
-      return !(await (new Bouncer()).goThroughGate(ability).for(resource))
+      return !(new Bouncer()).goThroughGate(ability).for(resource)
     } catch (e) {
       return true
     }
