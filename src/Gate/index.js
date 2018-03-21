@@ -21,7 +21,7 @@ class Gate {
    * @param  {function|string} callback
    * @return {this}
    */
-  static define (name, callback) {
+  define (name, callback) {
     Storage.storeGate(name, callback)
   }
 
@@ -33,7 +33,7 @@ class Gate {
    * @param  {function|object} policy
    * @return {this}
    */
-  static policy (resource, policy) {
+  policy (resource, policy) {
     const resourceName = Helpers.formatResourceName(resource)
 
     if (typeof policy === 'function') {
@@ -44,4 +44,4 @@ class Gate {
   }
 }
 
-module.exports = Gate
+module.exports = new Gate()

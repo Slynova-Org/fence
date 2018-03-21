@@ -21,7 +21,7 @@ class Guard {
    * @param  {object} user
    * @return {void}
    */
-  static setDefaultUser (user) {
+  setDefaultUser (user) {
     Storage.storeUser(user)
   }
 
@@ -32,7 +32,7 @@ class Guard {
    * @param  {object} user
    * @return {boolean}
    */
-  static can (user) {
+  can (user) {
     return new Bouncer(user)
   }
 
@@ -44,9 +44,9 @@ class Guard {
    * @param  {object|string} resource
    * @return {boolean}
    */
-  static allows (ability, resource) {
+  allows (ability, resource) {
     try {
-      if (Guard.$correspondsToPolicy(resource)) {
+      if (this.$correspondsToPolicy(resource)) {
         return (new Bouncer()).callPolicy(ability, resource)
       }
 
@@ -64,9 +64,9 @@ class Guard {
    * @param  {object|string} resource
    * @return {boolean}
    */
-  static denies (ability, resource) {
+  denies (ability, resource) {
     try {
-      if (Guard.$correspondsToPolicy(resource)) {
+      if (this.$correspondsToPolicy(resource)) {
         return !(new Bouncer()).callPolicy(ability, resource)
       }
 
@@ -76,7 +76,7 @@ class Guard {
     }
   }
 
-  static $correspondsToPolicy (resource) {
+  $correspondsToPolicy (resource) {
     const resourceName = Helpers.formatResourceName(resource)
 
     if (Storage.retrievePolicy(resourceName)) {
@@ -87,4 +87,4 @@ class Guard {
   }
 }
 
-module.exports = Guard
+module.exports = new Guard()
