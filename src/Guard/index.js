@@ -30,7 +30,7 @@ class Guard {
    *
    * @method can
    * @param  {object} user
-   * @return {boolean}
+   * @return {Bouncer}
    */
   can (user) {
     return new Bouncer(user)
