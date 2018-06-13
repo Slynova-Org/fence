@@ -2,8 +2,8 @@ const test = require('japa')
 const Post = require('../stubs/Post')
 const post = require('../stubs/post.json')
 const PostPolicy = require('../stubs/PostPolicy')
-const Gate = require('../../src/Gate')
-const Storage = require('../../src/Storage').instance
+const Gate = require('../../dist/Gate')
+const Storage = require('../../dist/Storage').instance
 
 test.group('Gate', (group) => {
   group.beforeEach(() => {

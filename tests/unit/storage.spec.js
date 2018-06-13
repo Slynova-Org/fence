@@ -1,6 +1,6 @@
 const test = require('japa')
 const user = require('../stubs/user.json')
-const Storage = require('../../src/Storage')
+const Storage = require('../../dist/Storage')
 
 test.group('Storage', (group) => {
   group.beforeEach(() => {

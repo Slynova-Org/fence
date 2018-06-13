@@ -1,6 +1,5 @@
 coverage
+dist
 node_modules
+types
 npm-debug.log
-package-lock.json
-yarn.lock
-yarn-error.log
