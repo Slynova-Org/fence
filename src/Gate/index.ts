@@ -28,7 +28,7 @@ class Gate {
    * @param resource Resource to create policy for
    * @param policy   Policy assigned to the resource
    */
-  public policy (resource: TResource, policy: Function): void {
+  public policy (resource: TResource, policy: Function | object): void {
     const resourceName = formatResourceName(resource)
 
     if (typeof policy === 'function') {

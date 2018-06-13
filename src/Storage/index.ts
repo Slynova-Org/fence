@@ -38,7 +38,7 @@ class Storage {
       this[instance] = new Storage(instanceEnforcer)
     }
 
-    return this[instance]
+    return this[instance] // tslint:disable-line
   }
 
   /**
@@ -46,8 +46,8 @@ class Storage {
    *
    * @param name Name of the gate
    */
-  public retrieveGate (name: string): TGate {
-    return this.$gates[name]
+  public retrieveGate (name: string): TGate | undefined {
+    return this.$gates[name] // tslint:disable-line
   }
 
   /**
@@ -55,7 +55,7 @@ class Storage {
    *
    * @param resource Name of the resource
    */
-  public retrievePolicy (resource: string): Function {
+  public retrievePolicy (resource: string): object | undefined {
     return this.$policies[name]
   }
 
@@ -75,7 +75,7 @@ class Storage {
    * @param resource Name of the resource
    * @param policy   Policy for the given resource
    */
-  public storePolicy (resource: string, policy: Function): void {
+  public storePolicy (resource: string, policy: object): void {
     this.$policies[resource] = policy
   }
 

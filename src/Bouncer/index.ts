@@ -5,8 +5,8 @@
  * @copyright Slynova - Romain Lanz <romain.lanz@slynova.ch>
  */
 
-import { GateNotFound, InvalidUser, PolicyNotFound } from '../Exceptions'
 import { TResource } from '../Contracts'
+import { GateNotFound, InvalidUser, PolicyNotFound } from '../Exceptions'
 import { formatResourceName } from '../Helpers'
 import Storage from '../Storage'
 
@@ -28,7 +28,7 @@ class Bouncer {
    *
    * @param user User to test
    */
-  constructor (user: Function | object) {
+  constructor (user: Function | object | undefined) {
     if (user === undefined) {
       throw new InvalidUser('You need to specify a user for the Bouncer.')
     }
