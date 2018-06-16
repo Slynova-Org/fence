@@ -56,7 +56,7 @@ class Storage {
    * @param resource Name of the resource
    */
   public retrievePolicy (resource: string): object | undefined {
-    return this.$policies[name]
+    return this.$policies[resource] // tslint:disable-line
   }
 
   /**
@@ -88,4 +88,4 @@ class Storage {
   }
 }
 
-export = Storage
+export { Storage }

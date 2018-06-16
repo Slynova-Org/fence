@@ -5,10 +5,10 @@
  * @copyright Slynova - Romain Lanz <romain.lanz@slynova.ch>
  */
 
-import Bouncer from '../Bouncer'
+import { Bouncer } from '../Bouncer'
 import { TResource } from '../Contracts'
 import { formatResourceName } from '../Helpers'
-import Storage from '../Storage'
+import { Storage } from '../Storage'
 
 const storage = Storage.instance
 
@@ -95,4 +95,4 @@ class Guard {
   }
 }
 
-export = Guard
+export { Guard }

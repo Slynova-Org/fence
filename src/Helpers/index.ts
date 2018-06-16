@@ -26,5 +26,6 @@ export function formatResourceName (resource: TResource): string {
     return resource._className
   }
 
+  // @ts-ignore
   return resource
 }

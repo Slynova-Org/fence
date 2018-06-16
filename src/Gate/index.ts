@@ -7,18 +7,18 @@
 
 import { TGate, TResource } from '../Contracts'
 import { formatResourceName } from '../Helpers'
-import Storage from '../Storage'
+import { Storage } from '../Storage'
 
 const storage = Storage.instance
 
-class Gate {
+abstract class Gate {
   /**
    * Defines a new Gate.
    *
    * @param name     Name of the gate
    * @param callback Callback
    */
-  public define (name: string, callback: TGate): void {
+  public static define (name: string, callback: TGate): void {
     storage.storeGate(name, callback)
   }
 
@@ -28,15 +28,16 @@ class Gate {
    * @param resource Resource to create policy for
    * @param policy   Policy assigned to the resource
    */
-  public policy (resource: TResource, policy: Function | object): void {
+  public static policy (resource: TResource, policy: Function | object): void {
     const resourceName = formatResourceName(resource)
 
     if (typeof policy === 'function') {
+      // @ts-ignore
       policy = new policy() // tslint:disable-line
     }
 
-    storage.storePolicy(name, policy)
+    storage.storePolicy(resourceName, policy)
   }
 }
 
-export = new Gate()
+export { Gate }

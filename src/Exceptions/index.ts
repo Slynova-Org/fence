@@ -7,10 +7,8 @@
 
 // tslint:disable
 
-import NE from 'node-exceptions'
+import { LogicalException } from 'node-exceptions'
 
-export class InvalidUser extends NE.LogicalException {}
-export class GateNotFound extends NE.LogicalException {}
-export class PolicyNotFound extends NE.LogicalException {}
-
-
+export class InvalidUser extends LogicalException {}
+export class GateNotFound extends LogicalException {}
+export class PolicyNotFound extends LogicalException {}

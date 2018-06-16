@@ -1,2 +1,2 @@
-export type TGate = (user: object, resource: object) => boolean
+export type TGate = (user: object, resource: TResource) => boolean
 export type TResource = { new(...args): any } | { _className: string } | string

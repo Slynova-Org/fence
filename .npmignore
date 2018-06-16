@@ -1,3 +1,5 @@
+coverage
+src
 tests
 .editorconfig
 .gitignore

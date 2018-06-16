@@ -8,7 +8,7 @@
 import { TResource } from '../Contracts'
 import { GateNotFound, InvalidUser, PolicyNotFound } from '../Exceptions'
 import { formatResourceName } from '../Helpers'
-import Storage from '../Storage'
+import { Storage } from '../Storage'
 
 const storage = Storage.instance
 
@@ -30,6 +30,7 @@ class Bouncer {
    */
   constructor (user: Function | object | undefined) {
     if (user === undefined) {
+      // @ts-ignore
       throw new InvalidUser('You need to specify a user for the Bouncer.')
     }
 
@@ -47,6 +48,7 @@ class Bouncer {
     const policy = storage.retrievePolicy(resourceName)
 
     if (policy === undefined) {
+      // @ts-ignore
       throw new PolicyNotFound(`The policy for ${resourceName} has not been found.`)
     }
 
@@ -62,6 +64,7 @@ class Bouncer {
     const gate = storage.retrieveGate(this.$gate)
 
     if (gate === undefined) {
+      // @ts-ignore
       throw new GateNotFound(`The gate ${this.$gate} has not been found.`)
     }
 
@@ -80,4 +83,4 @@ class Bouncer {
   }
 }
 
-export = Bouncer
+export { Bouncer }
