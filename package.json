@@ -20,10 +20,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Slynova-Org/node-fence"
+    "url": "https://github.com/Slynova-Org/fence"
   },
   "bugs": {
-    "url": "https://github.com/Slynova-Org/node-fence/issues"
+    "url": "https://github.com/Slynova-Org/fence/issues"
   },
   "devDependencies": {
     "@slynova/tslint-config": "^1.0.3",
