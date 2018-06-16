@@ -1,16 +1,16 @@
 <p align="center">
-  <img alt="node-fence" src="https://user-images.githubusercontent.com/2793951/28426832-a49b1e36-6d74-11e7-906c-76de04742d39.png">
+  <img alt="fence" src="https://user-images.githubusercontent.com/2793951/28426832-a49b1e36-6d74-11e7-906c-76de04742d39.png">
 </p>
 
 <p align="center">
-  <a href="https://travis-ci.org/Slynova-Org/node-fence"><img src="https://img.shields.io/travis/Slynova-Org/node-fence/master.svg?style=flat-square" alt="Build Status"></a>
-  <a href="https://coveralls.io/github/Slynova-Org/node-fence?branch=master"><img src="https://img.shields.io/coveralls/Slynova-Org/node-fence/master.svg?style=flat-square" alt="Coverage Status"></a>
+  <a href="https://travis-ci.org/Slynova-Org/fence"><img src="https://img.shields.io/travis/Slynova-Org/fence/master.svg?style=flat-square" alt="Build Status"></a>
+  <a href="https://coveralls.io/github/Slynova-Org/fence?branch=master"><img src="https://img.shields.io/coveralls/Slynova-Org/fence/master.svg?style=flat-square" alt="Coverage Status"></a>
   <a href="https://www.npmjs.com/package/@slynova/fence"><img src="https://img.shields.io/npm/v/@slynova/fence.svg?style=flat-square" alt="Version"></a>
   <a href="https://www.npmjs.com/package/@slynova/fence"><img src="https://img.shields.io/npm/dt/@slynova/fence.svg?style=flat-square" alt="Downloads"></a>
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/npm/l/@slynova/fence.svg?style=flat-square" alt="License"></a>
 </p>
 
-`node-fence` is a framework-agnostic package which provides powerful ACL abilities to [Node.js](https://nodejs.org).<br>
+`fence` is a framework-agnostic package which provides powerful ACL abilities to JavaScript.<br>
 It lets you easily manage ACL with a fluent API easy to learn and to work with. :rocket:
 
 <hr>
