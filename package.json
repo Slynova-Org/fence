@@ -26,13 +26,13 @@
     "url": "https://github.com/Slynova-Org/node-fence/issues"
   },
   "devDependencies": {
-    "@slynova/tslint-config": "file:../tslint-config",
+    "@slynova/tslint-config": "^1.0.3",
     "coveralls": "^3.0.1",
     "istanbul": "^0.4.5",
     "japa": "^1.0.3",
     "require-all": "^2.2.0",
     "tslint": "^5.10.0",
-    "typescript": "^2.9.1"
+    "typescript": "^2.9.2"
   },
   "dependencies": {
     "node-exceptions": "^3.0.0"
