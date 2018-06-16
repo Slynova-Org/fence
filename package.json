@@ -16,7 +16,7 @@
     "build": "tsc",
     "lint": "tslint --project tsconfig.json",
     "test": "npm run lint && npm run build && node tests/test.js",
-    "test:coverage": "./node_modules/.bin/istanbul cover -x tests/test.js tests/test.js && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
+    "test:coverage": "npm run lint && npm run build && ./node_modules/.bin/istanbul cover -x tests/test.js tests/test.js && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
   },
   "repository": {
     "type": "git",
