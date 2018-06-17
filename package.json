@@ -10,26 +10,29 @@
   ],
   "author": "Romain Lanz <romain.lanz@slynova.ch>",
   "license": "MIT",
-  "main": "src/index.js",
+  "main": "dist/index.js",
+  "types": "types/index.d.ts",
   "scripts": {
-    "lint": "eslint src",
-    "test": "npm run lint && node tests/test.js",
-    "test:coverage": "./node_modules/.bin/istanbul cover -x tests/test.js tests/test.js && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
+    "build": "tsc",
+    "lint": "tslint --project tsconfig.json",
+    "test": "npm run lint && npm run build && node tests/test.js",
+    "test:coverage": "npm run lint && npm run build && ./node_modules/.bin/istanbul cover -x tests/test.js tests/test.js && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Slynova-Org/node-fence"
+    "url": "https://github.com/Slynova-Org/fence"
   },
   "bugs": {
-    "url": "https://github.com/Slynova-Org/node-fence/issues"
+    "url": "https://github.com/Slynova-Org/fence/issues"
   },
   "devDependencies": {
-    "@slynova/eslint-config": "^1.0.4",
-    "coveralls": "^3.0.0",
-    "eslint": "^4.19.0",
+    "@slynova/tslint-config": "^1.0.3",
+    "coveralls": "^3.0.1",
     "istanbul": "^0.4.5",
     "japa": "^1.0.3",
-    "require-all": "^2.2.0"
+    "require-all": "^2.2.0",
+    "tslint": "^5.10.0",
+    "typescript": "^2.9.2"
   },
   "dependencies": {
     "node-exceptions": "^3.0.0"
