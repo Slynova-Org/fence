@@ -13,6 +13,7 @@
   "main": "dist/index.js",
   "types": "types/index.d.ts",
   "scripts": {
+    "prepublish": "npm run test",
     "build": "tsc",
     "lint": "tslint --project tsconfig.json",
     "test": "npm run lint && npm run build && node tests/test.js",
