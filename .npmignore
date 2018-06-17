@@ -1,4 +1,8 @@
+coverage
+src
 tests
 .editorconfig
 .gitignore
 .travis.yml
+tsconfig.json
+tslint.json
