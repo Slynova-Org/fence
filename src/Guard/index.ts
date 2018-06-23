@@ -83,17 +83,7 @@ class Guard {
    * @param user     Optional. User to verify
    */
   public denies (ability: string, resource: TResource, user: Function | object | undefined): boolean {
-    const usedUser = (user !== undefined) ? user : this.$user
-
-    try {
-      if (this.$correspondsToPolicy(resource)) {
-        return !(new Bouncer(usedUser)).callPolicy(ability, resource)
-      }
-
-      return !(new Bouncer(usedUser)).pass(ability).for(resource)
-    } catch (e) {
-      return true
-    }
+    return !this.allows(ability, resource, user)
   }
 
   /**
