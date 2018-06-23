@@ -37,15 +37,6 @@ class Guard {
   }
 
   /**
-   * Creates a Bouncer with the given user.
-   *
-   * @param user User to test
-   */
-  public can (user: Function | object): Bouncer {
-    return Guard.can(user)
-  }
-
-  /**
    * Sets a default user for any call.
    *
    * @param user User to test
@@ -70,6 +61,15 @@ class Guard {
     } catch (e) {
       return false
     }
+  }
+
+  /**
+   * Creates a Bouncer with the given user.
+   *
+   * @param user User to test
+   */
+  public can (user: Function | object): Bouncer {
+    return Guard.can(user)
   }
 
   /**
