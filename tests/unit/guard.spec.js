@@ -45,11 +45,25 @@ test.group('Guard', (group) => {
     assert.isTrue(guard.allows('post.update', post))
   })
 
+  test('it should let us override the user for short syntax', async (assert) => {
+    Gate.define('post.update', (user, resource) => user.id === resource.author_id)
+    const guard = new Guard(user)
+
+    assert.isFalse(guard.allows('post.update', post, { id: 2 }))
+  })
+
   test('it should provide short syntax for denies', (assert) => {
     Gate.define('post.update', (user, resource) => user.id === resource.author_id)
     const guard = new Guard(user)
 
     assert.isFalse(guard.denies('post.update', post))
+  })
+
+  test('it should let us override the user for short syntax', async (assert) => {
+    Gate.define('post.update', (user, resource) => user.id === resource.author_id)
+    const guard = new Guard(user)
+
+    assert.isTrue(guard.denies('post.update', post, { id: 2 }))
   })
 
   test('it should allow to use no resource', (assert) => {

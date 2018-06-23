@@ -50,14 +50,17 @@ class Guard {
    *
    * @param ability  Ability to test
    * @param resource Resource to test
+   * @param user     Optional. User to verify
    */
-  public allows (ability: string, resource: TResource): boolean {
+  public allows (ability: string, resource: TResource, user: Function | object | undefined): boolean {
+    const usedUser = (user !== undefined) ? user : this.$user
+
     try {
       if (this.$correspondsToPolicy(resource)) {
-        return (new Bouncer(this.$user)).callPolicy(ability, resource)
+        return (new Bouncer(usedUser)).callPolicy(ability, resource)
       }
 
-      return (new Bouncer(this.$user)).pass(ability).for(resource)
+      return (new Bouncer(usedUser)).pass(ability).for(resource)
     } catch (e) {
       return false
     }
@@ -77,14 +80,17 @@ class Guard {
    *
    * @param ability  Ability to test
    * @param resource Resource to test
+   * @param user     Optional. User to verify
    */
-  public denies (ability: string, resource: TResource): boolean {
+  public denies (ability: string, resource: TResource, user: Function | object | undefined): boolean {
+    const usedUser = (user !== undefined) ? user : this.$user
+
     try {
       if (this.$correspondsToPolicy(resource)) {
-        return !(new Bouncer(this.$user)).callPolicy(ability, resource)
+        return !(new Bouncer(usedUser)).callPolicy(ability, resource)
       }
 
-      return !(new Bouncer(this.$user)).pass(ability).for(resource)
+      return !(new Bouncer(usedUser)).pass(ability).for(resource)
     } catch (e) {
       return true
     }
