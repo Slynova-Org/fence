@@ -75,17 +75,15 @@ Most of the time, you'll want to use the authenticated user to test your gates. 
 const guard = Guard.setDefaultUser({ id: 1, username: 'romainlanz' })
 ```
 
-### Testing a Gate
-
-You can test your gate with a short or a long syntax.
+### Public API
 
 ```js
-// Long
-await Guard.can(user).goThroughGate('XXX').for(resource) // true or false
-
-// Short - will need to have an instance of Guard with the specific user
-await guard.allows('XXX', resource) // true or false
-await guard.denies('XXX', resource) // true or false
+guard.allows('gateName/Policy Method', resource) // It will use per default the defined user or return false if not defined
+guard.denies('gateName/Policy Method', resource) // It will use per default the defined user or return true if not defined
+guard.allows('gateName/Policy Method', resource, user)
+guard.denies('gateName/Policy Method', resource, user)
+guard.can(user).pass('gateName').for(resource)
+guard.can(user).callPolicy('Policy Method', resource)
 ```
 
 <br>
