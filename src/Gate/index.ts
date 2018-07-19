@@ -29,7 +29,7 @@ abstract class Gate {
    * @param policy   Policy assigned to the resource
    */
   public static policy (resource: TResource, policy: Function | object): void {
-    const resourceName = formatResourceName(resource)
+    const resourceName = Gate.$formatResourceName(resource)
 
     if (typeof policy === 'function') {
       // @ts-ignore
@@ -37,6 +37,15 @@ abstract class Gate {
     }
 
     storage.storePolicy(resourceName, policy)
+  }
+
+  /**
+   * Returns the name of a resource.
+   *
+   * @param  resource  Resource to search the name for
+   */
+  private static $formatResourceName (resource: TResource): string {
+    return formatResourceName(resource)
   }
 }
 
