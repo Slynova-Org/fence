@@ -19,7 +19,7 @@ abstract class Gate {
    * @param callback Callback
    */
   public static define (name: string, callback: TGate): void {
-    storage.storeGate(name, callback)
+    Gate.$getStorage().storeGate(name, callback)
   }
 
   /**
@@ -36,7 +36,7 @@ abstract class Gate {
       policy = new policy() // tslint:disable-line
     }
 
-    storage.storePolicy(resourceName, policy)
+    Gate.$getStorage().storePolicy(resourceName, policy)
   }
 
   /**
@@ -46,6 +46,15 @@ abstract class Gate {
    */
   private static $formatResourceName (resource: TResource): string {
     return formatResourceName(resource)
+  }
+
+  /**
+   * Returns the storage.
+   *
+   * @return Storage used
+   */
+  private static $getStorage (): Storage {
+    return storage
   }
 }
 

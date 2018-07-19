@@ -74,4 +74,9 @@ test.group('Gate', (group) => {
 
     Gate.$formatResourceName = oldFormatter
   })
+
+  test('it should be able to returns the storage used', (assert) => {
+    const storage2 = Gate.$getStorage()
+    assert.equal(storage, storage2)
+  })
 })
