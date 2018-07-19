@@ -63,4 +63,15 @@ test.group('Gate', (group) => {
     assert.equal(Object.keys(storage.$policies).length, 1)
     assert.isDefined(storage.$policies['Post'])
   })
+
+  test('it should be able to overwrite resourceName formatter', (assert) => {
+    const oldFormatter = Gate.$formatResourceName
+    Gate.$formatResourceName = (resource) => 'testing'
+
+    Gate.policy('Post', new PostPolicy())
+    assert.equal(Object.keys(storage.$policies).length, 1)
+    assert.isDefined(storage.$policies['testing'])
+
+    Gate.$formatResourceName = oldFormatter
+  })
 })
