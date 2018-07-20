@@ -1,3 +1,12 @@
+<a name="1.0.4"></a>
+## 1.0.4 (2018-07-20)
+
+
+### Features
+
+* export Helpers to let us overwrite formatResourceName ([79ab280](https://github.com/Slynova-Org/fence/commit/79ab280))
+
+
 <a name="1.0.3"></a>
 ## 1.0.3 (2018-07-19)
 

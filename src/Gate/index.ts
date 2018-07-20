@@ -19,7 +19,7 @@ abstract class Gate {
    * @param callback Callback
    */
   public static define (name: string, callback: TGate): void {
-    storage.storeGate(name, callback)
+    Gate.$getStorage().storeGate(name, callback)
   }
 
   /**
@@ -29,23 +29,23 @@ abstract class Gate {
    * @param policy   Policy assigned to the resource
    */
   public static policy (resource: TResource, policy: Function | object): void {
-    const resourceName = Gate.$formatResourceName(resource)
+    const resourceName = formatResourceName(resource)
 
     if (typeof policy === 'function') {
       // @ts-ignore
       policy = new policy() // tslint:disable-line
     }
 
-    storage.storePolicy(resourceName, policy)
+    Gate.$getStorage().storePolicy(resourceName, policy)
   }
 
   /**
-   * Returns the name of a resource.
+   * Returns the storage.
    *
-   * @param  resource  Resource to search the name for
+   * @return Storage used
    */
-  private static $formatResourceName (resource: TResource): string {
-    return formatResourceName(resource)
+  private static $getStorage (): Storage {
+    return storage
   }
 }
 

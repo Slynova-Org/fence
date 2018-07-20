@@ -7,5 +7,6 @@
 
 import { Gate } from './Gate'
 import { Guard } from './Guard'
+import * as Helpers from './Helpers'
 
-export { Gate, Guard }
+export { Gate, Guard, Helpers }
