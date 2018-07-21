@@ -28,8 +28,8 @@ class Bouncer {
    *
    * @param user User to test
    */
-  constructor (user: Function | object | undefined) {
-    if (user === undefined) {
+  constructor (user: Function | object | undefined | null) {
+    if (user === undefined || user === null) {
       // @ts-ignore
       throw new InvalidUser('You need to specify a user for the Bouncer.')
     }
