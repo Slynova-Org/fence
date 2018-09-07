@@ -1,3 +1,13 @@
+<a name="1.0.6"></a>
+## [1.0.6](https://github.com/Slynova-Org/fence/compare/1.0.5...1.0.6) (2018-09-07)
+
+
+### Features
+
+* **guard:** avoid error when patching formatResourceName ([90c0434](https://github.com/Slynova-Org/fence/commit/90c0434))
+
+
+
 <a name="1.0.5"></a>
 ## [1.0.5](https://github.com/Slynova-Org/fence/compare/1.0.4...1.0.5) (2018-07-21)
 
