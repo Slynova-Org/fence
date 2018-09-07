@@ -92,11 +92,15 @@ class Guard {
    * @param resource Resource to verify
    */
   private $correspondsToPolicy (resource: TResource): boolean {
-    const resourceName = formatResourceName(resource)
+    try {
+      const resourceName = formatResourceName(resource)
 
-    return (storage.retrievePolicy(resourceName) !== undefined)
-      ? true
-      : false
+      return (storage.retrievePolicy(resourceName) !== undefined)
+        ? true
+        : false
+    } catch (e) {
+      return false
+    }
   }
 }
 
