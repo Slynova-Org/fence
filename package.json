@@ -30,7 +30,7 @@
     "@slynova/tslint-config": "^1.0.3",
     "coveralls": "^3.0.1",
     "istanbul": "^0.4.5",
-    "japa": "^2.0.10",
+    "japa": "^3.0.0",
     "require-all": "^3.0.0",
     "tslint": "^5.10.0",
     "typescript": "^3.5.2"
