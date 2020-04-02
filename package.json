@@ -32,7 +32,7 @@
     "istanbul": "^0.4.5",
     "japa": "^2.0.10",
     "require-all": "^3.0.0",
-    "tslint": "^5.10.0",
+    "tslint": "^6.1.1",
     "typescript": "^3.5.2"
   },
   "dependencies": {
