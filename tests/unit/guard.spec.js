@@ -72,4 +72,15 @@ test.group('Guard', (group) => {
 
     assert.isFalse(guard.allows('show-hello-world'))
   })
+
+  test('it should be able to execute async policy', async (assert) => {
+    Gate.define('post.update', (user, resource) => {
+      return new Promise((resolve) => {
+        resolve(user.id === resource.author_id)
+      })
+    })
+    const guard = new Guard(user)
+
+    assert.isTrue(await guard.allows('post.update', post))
+  })
 })

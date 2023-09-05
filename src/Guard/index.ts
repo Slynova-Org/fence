@@ -52,7 +52,7 @@ class Guard {
    * @param resource Resource to test
    * @param user     Optional. User to verify
    */
-  public allows (ability: string, resource: TResource, user: Function | object | undefined): boolean {
+  public allows (ability: string, resource: TResource, user: Function | object | undefined): Promise<boolean> | boolean {
     const usedUser = (user !== undefined) ? user : this.$user
 
     try {
